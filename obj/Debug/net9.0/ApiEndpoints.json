@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "CarsShop.RequestsDto.Auth.LoginDto",
+        "Type": "CarsShop.RequestsDto.Login.LoginDto",
         "IsRequired": true
       }
     ],
@@ -35,7 +35,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "CarsShop.RequestsDto.Auth.RegisterDto",
+        "Type": "CarsShop.RequestsDto.Login.RegisterDto",
         "IsRequired": true
       }
     ],
