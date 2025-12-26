@@ -20,7 +20,7 @@ namespace CarsShop.RequestsDto.Login
             var model = new User()
             {
                 BirthDate = BirthDate,
-                Date = DateOnly.FromDateTime(DateTime.Now),
+                CreationDate = DateOnly.FromDateTime(DateTime.Now),
                 Email = Email,
                 LastName = LastName,
                 Name = Name,

@@ -6,10 +6,10 @@ namespace CarsShop.Db
 {
     public class AppDbCar : DbContext
     {
-        public AppDbCar(DbContextOptions options) : base(options)
+        public AppDbCar(DbContextOptions<AppDbCar> options) : base(options)
         {
         }
-
+        
         public DbSet<Car>  Cars { get; set; }
     }
 }

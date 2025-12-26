@@ -30,7 +30,7 @@ namespace IDGCoreWebAPI.Controllers
             if (!result)
                 return BadRequest("Email already exists");
 
-            return Ok();
+            return CreatedAtAction(nameof(Register), nameof(AuthController), request);
         }
 
         // LOGIN
