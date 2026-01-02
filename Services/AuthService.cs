@@ -1,9 +1,11 @@
-﻿using CarsShop.Db;
+﻿using CarsShop.Configuration;
+using CarsShop.Db;
 using CarsShop.Db.Models;
 using CarsShop.RequestsDto.Login;
 using CarsShop.Responses.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -15,15 +17,15 @@ namespace CarsShop.Services.Auth
     {
         //private readonly List<User> _users = new();
         private readonly PasswordHasher<User> _hasher;
-        private readonly string _jwtKey = "THIS_IS_SECRET_KEY_CHANGE_ME";
         private readonly AppDbUser _db;
-
+        private readonly JWTInfo _jwtOptions;
         private static readonly string ErrorEmailOrPasswordWrong = "Invalid email or password";
 
 
-        public AuthService(AppDbUser db)
+        public AuthService(AppDbUser db, IOptions<JWTInfo> jwtOptions)
         {
             this._db = db;
+            this._jwtOptions = jwtOptions.Value;
             this._hasher = new();
         }
 
@@ -68,23 +70,26 @@ namespace CarsShop.Services.Auth
 
         private string GenerateJwt(User user)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtKey));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.Key));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
             {
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim("id", user.ID.ToString())
+                new Claim("id", user.Id.ToString())
             };
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.UtcNow.AddHours(1),
-                signingCredentials: creds
+                expires: DateTime.UtcNow.AddHours(_jwtOptions.ExpiresInMinutes),
+                signingCredentials: creds,
+                audience:_jwtOptions.Audience,
+                issuer : _jwtOptions.Issuer
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
+

@@ -2,6 +2,7 @@
 using CarsShop.RequestsDto.CarsShop;
 using CarsShop.Responses.CarsShop;
 using CarsShop.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IDGCoreWebAPI.Controllers
@@ -9,8 +10,8 @@ namespace IDGCoreWebAPI.Controllers
 
     namespace CarsShop.Controllers
     {
+        [Authorize]
         [ApiController]
-
         [Route("api/[controller]")]
         public class CarsController : ControllerBase
         {

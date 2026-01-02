@@ -1,10 +1,14 @@
-﻿using CarsShop.RequestsDto.Login;
+﻿using Azure;
+using CarsShop.RequestsDto.Login;
 using CarsShop.Responses.Auth;
 using CarsShop.Services.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace IDGCoreWebAPI.Controllers
 {
+    [AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
@@ -27,10 +31,11 @@ namespace IDGCoreWebAPI.Controllers
 
             var result = await _authService.RegisterAsync(request);
 
-            if (!result)
+             if (!result)
                 return BadRequest("Email already exists");
 
             return CreatedAtAction(nameof(Register), nameof(AuthController), request);
+            //return Ok();
         }
 
         // LOGIN

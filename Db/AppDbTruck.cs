@@ -6,7 +6,7 @@ namespace CarsShop.Db
 {
     public class AppDbTruck : DbContext
     {
-        public AppDbTruck(DbContextOptions options) : base(options)
+        public AppDbTruck(DbContextOptions<AppDbTruck> options) : base(options)
         {
         }
 

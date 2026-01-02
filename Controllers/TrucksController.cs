@@ -4,14 +4,15 @@ using CarsShop.RequestsDto.CarsShop;
 using CarsShop.Responses.TrucksShop;
 using CarsShop.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IDGCoreWebAPI.Controllers
 {
 
     namespace CarsShop.Controllers
     {
+        [Authorize]
         [ApiController]
-
         [Route("api/[controller]")]
         public class TrucksController : ControllerBase
         {

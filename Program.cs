@@ -3,9 +3,23 @@ using CarsShop.Interfeces.Db;
 using CarsShop.Services;
 using CarsShop.Services.Auth;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using CarsShop.Configuration;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services
+    .AddOptions<JWTInfo>()
+    .Bind(builder.Configuration.GetSection("JWTInfo"))
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+
+var jwtInfo = builder.Configuration
+    .GetSection("JWTInfo")
+    .Get<JWTInfo>();
 
 //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -33,7 +47,27 @@ builder.Services.AddDbContextApp(builder.Configuration);
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddScoped<ITruckService, TruckService>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtInfo.Issuer,
+            ValidAudience = jwtInfo.Audience,
+            IssuerSigningKey =
+                new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(jwtInfo.Key)
+                ),
+            ClockSkew = TimeSpan.Zero
 
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 

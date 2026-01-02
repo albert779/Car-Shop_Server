@@ -329,3 +329,4 @@ C:\Users\aelia\GitHub\Car-Shop_Server\obj\Debug\net9.0\refint\CarsShop.dll
 C:\Users\aelia\GitHub\Car-Shop_Server\obj\Debug\net9.0\CarsShop.pdb
 C:\Users\aelia\GitHub\Car-Shop_Server\obj\Debug\net9.0\CarsShop.genruntimeconfig.cache
 C:\Users\aelia\GitHub\Car-Shop_Server\obj\Debug\net9.0\ref\CarsShop.dll
+C:\Users\aelia\GitHub\Car-Shop_Server\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
