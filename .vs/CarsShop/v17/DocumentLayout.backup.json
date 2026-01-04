@@ -94,8 +94,7 @@
               "RelativeToolTip": "Services\\CarService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-02T13:39:03.165Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-02T13:39:03.165Z"
             },
             {
               "$type": "Document",
@@ -120,8 +119,7 @@
               "RelativeToolTip": "Configuration\\JWTInfo.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAqwA8AAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-02T13:23:51.577Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-02T13:23:51.577Z"
             },
             {
               "$type": "Document",
@@ -133,8 +131,7 @@
               "RelativeToolTip": "Controllers\\TrucksController.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-02T13:11:53.638Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-02T13:11:53.638Z"
             },
             {
               "$type": "Document",
@@ -146,8 +143,7 @@
               "RelativeToolTip": "appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-01-01T18:53:37.054Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-01T18:53:37.054Z"
             },
             {
               "$type": "Document",
@@ -159,8 +155,7 @@
               "RelativeToolTip": "Responses\\AuthResponse\\AuthResponse.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-29T18:02:30.411Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-29T18:02:30.411Z"
             },
             {
               "$type": "Document",
@@ -172,8 +167,7 @@
               "RelativeToolTip": "Interfeces\\Services\\IAuthService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-29T18:01:56.518Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-29T18:01:56.518Z"
             },
             {
               "$type": "Document",
@@ -185,8 +179,7 @@
               "RelativeToolTip": "Services\\AuthService.cs",
               "ViewState": "AgIAADgAAAAAAAAAAAArwEMAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-27T18:08:29.594Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-27T18:08:29.594Z"
             },
             {
               "$type": "Document",
@@ -198,8 +191,7 @@
               "RelativeToolTip": "Db\\Models\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T13:24:05.694Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T13:24:05.694Z"
             },
             {
               "$type": "Document",
@@ -211,8 +203,7 @@
               "RelativeToolTip": "Controllers\\CarsController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T13:15:51.971Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T13:15:51.971Z"
             },
             {
               "$type": "Document",
@@ -224,8 +215,7 @@
               "RelativeToolTip": "RequestsDto\\Login\\LoginDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T13:15:48.565Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T13:15:48.565Z"
             },
             {
               "$type": "Document",
@@ -237,8 +227,7 @@
               "RelativeToolTip": "RequestsDto\\Login\\RegisterDto.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAIA0wBEAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T13:12:10.819Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T13:12:10.819Z"
             },
             {
               "$type": "Document",
@@ -250,8 +239,7 @@
               "RelativeToolTip": "Controllers\\AuthController.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAQwAoAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T13:11:01.69Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T13:11:01.69Z"
             },
             {
               "$type": "Document",
@@ -263,8 +251,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-26T12:54:42.844Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T12:54:42.844Z"
             },
             {
               "$type": "Document",
@@ -276,8 +263,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAFAAAAAAAAAAAAArwHEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T12:54:01.141Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T12:54:01.141Z"
             },
             {
               "$type": "Document",
@@ -289,8 +275,7 @@
               "RelativeToolTip": "Db\\AppDbCar.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAUwAgAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T12:46:43.853Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-26T12:46:43.853Z"
             },
             {
               "$type": "Document",
@@ -302,8 +287,7 @@
               "RelativeToolTip": "Db\\AppDbUser.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAewA4AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-24T17:25:09.208Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-24T17:25:09.208Z"
             },
             {
               "$type": "Document",
@@ -315,8 +299,7 @@
               "RelativeToolTip": "Db\\AppDbLogin.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-21T18:04:56.101Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T18:04:56.101Z"
             }
           ]
         }

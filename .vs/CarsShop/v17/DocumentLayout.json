@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\aelia\\github\\car-shop_server\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\aelia\\github\\car-shop_server\\requestsdto\\login\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:requestsdto\\login\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\aelia\\github\\car-shop_server\\db\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:db\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\aelia\\github\\car-shop_server\\db\\appdbtruck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:db\\appdbtruck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\aelia\\github\\car-shop_server\\services\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:services\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\aelia\\github\\car-shop_server\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\aelia\\github\\car-shop_server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -51,14 +59,6 @@
       "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:requestsdto\\login\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\aelia\\github\\car-shop_server\\requestsdto\\login\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:requestsdto\\login\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\aelia\\github\\car-shop_server\\db\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:db\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\aelia\\github\\car-shop_server\\interfeces\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:interfeces\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -82,11 +82,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "CarService.cs",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\Services\\CarService.cs",
               "RelativeDocumentMoniker": "Services\\CarService.cs",
@@ -98,7 +98,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "AppDbTruck.cs",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\Db\\AppDbTruck.cs",
               "RelativeDocumentMoniker": "Db\\AppDbTruck.cs",
@@ -111,7 +111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "JWTInfo.cs",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\Configuration\\JWTInfo.cs",
               "RelativeDocumentMoniker": "Configuration\\JWTInfo.cs",
@@ -123,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "TrucksController.cs",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\Controllers\\TrucksController.cs",
               "RelativeDocumentMoniker": "Controllers\\TrucksController.cs",
@@ -147,7 +147,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "AuthResponse.cs",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\Responses\\AuthResponse\\AuthResponse.cs",
               "RelativeDocumentMoniker": "Responses\\AuthResponse\\AuthResponse.cs",
@@ -171,31 +171,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "AuthService.cs",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "Services\\AuthService.cs",
               "ToolTip": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\Services\\AuthService.cs",
               "RelativeToolTip": "Services\\AuthService.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAArwEMAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAADcAAAAAAAAAAAAuwEMAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-27T18:08:29.594Z"
+              "WhenOpened": "2025-12-27T18:08:29.594Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 2,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\Db\\Models\\User.cs",
               "RelativeDocumentMoniker": "Db\\Models\\User.cs",
               "ToolTip": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\Db\\Models\\User.cs",
               "RelativeToolTip": "Db\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T13:24:05.694Z"
+              "WhenOpened": "2025-12-26T13:24:05.694Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "CarsController.cs",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\Controllers\\CarsController.cs",
               "RelativeDocumentMoniker": "Controllers\\CarsController.cs",
@@ -207,7 +209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "LoginDto.cs",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\RequestsDto\\Login\\LoginDto.cs",
               "RelativeDocumentMoniker": "RequestsDto\\Login\\LoginDto.cs",
@@ -219,19 +221,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 1,
               "Title": "RegisterDto.cs",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\RequestsDto\\Login\\RegisterDto.cs",
               "RelativeDocumentMoniker": "RequestsDto\\Login\\RegisterDto.cs",
               "ToolTip": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\RequestsDto\\Login\\RegisterDto.cs",
               "RelativeToolTip": "RequestsDto\\Login\\RegisterDto.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAIA0wBEAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-26T13:12:10.819Z"
+              "WhenOpened": "2025-12-26T13:12:10.819Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
@@ -243,7 +246,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -255,7 +258,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -267,7 +270,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "AppDbCar.cs",
               "DocumentMoniker": "C:\\Users\\aelia\\GitHub\\Car-Shop_Server\\Db\\AppDbCar.cs",
               "RelativeDocumentMoniker": "Db\\AppDbCar.cs",
