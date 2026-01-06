@@ -26,6 +26,9 @@ namespace IDGCoreWebAPI.Controllers
                 this._truckService = truck_Service;
             }
 
+
+
+            [AllowAnonymous]
             [HttpGet]
             public ActionResult<IEnumerable<GetCarstResponse>> GeAll()
             {

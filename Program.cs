@@ -71,7 +71,9 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-app.UseCors("AllowAngular"); 
+//app.UseCors("AllowAngular"); 
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -83,7 +85,7 @@ if (app.Environment.IsDevelopment())
 //app.UseAuthorization();
 
 
-app.MapControllers();
+//app.MapControllers();
 
 
 // ?? Global error handling middleware
@@ -110,6 +112,21 @@ app.UseExceptionHandler(errorApp =>
         }
     });
 });
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+
+// 2?? CORS MUST be before auth & controllers
+app.UseCors("AllowAngular");
+
+// 3?? Security middleware
+app.UseAuthentication();
+app.UseAuthorization();
+
+// 4?? Endpoints LAST
+app.MapControllers();
 
 app.Run();
 
