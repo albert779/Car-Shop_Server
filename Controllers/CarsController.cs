@@ -24,7 +24,6 @@ namespace IDGCoreWebAPI.Controllers
                 ArgumentNullException.ThrowIfNull(car_carService);
                 this._carService = car_carService;
             }
-
             [AllowAnonymous]
             [HttpGet]
             public ActionResult<IEnumerable<GetCarstResponse>> GeAll()

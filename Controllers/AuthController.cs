@@ -35,6 +35,7 @@ namespace IDGCoreWebAPI.Controllers
                 return BadRequest("Email already exists");
 
             return CreatedAtAction(nameof(Register), nameof(AuthController), request);
+            //return Conflict(new { message = "Email already exists" });
             //return Ok();
         }
 
