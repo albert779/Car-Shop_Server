@@ -24,7 +24,8 @@ namespace IDGCoreWebAPI.Controllers
                 ArgumentNullException.ThrowIfNull(car_carService);
                 this._carService = car_carService;
             }
-            [AllowAnonymous]
+            //[AllowAnonymous]
+            //[Authorize]
             [HttpGet]
             public ActionResult<IEnumerable<GetCarstResponse>> GeAll()
             {
@@ -56,7 +57,7 @@ namespace IDGCoreWebAPI.Controllers
                 catch (Exception ex)
                 {
                     // log ex somewhere
-                    return StatusCode(500, "An unexpected error occurred.");
+                    return StatusCode(500, ex.ToString());
                 }
             }
 
