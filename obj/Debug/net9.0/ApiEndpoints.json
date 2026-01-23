@@ -15,7 +15,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "CarsShop.Responses.Auth.AuthResponse",
+        "Type": "CarsShop.Responses.API.APIResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",

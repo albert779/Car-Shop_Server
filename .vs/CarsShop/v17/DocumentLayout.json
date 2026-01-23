@@ -3,16 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\controllers\\carscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:controllers\\carscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\responses\\api\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:responses\\api\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\responses\\api\\apiresponsewitherror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:responses\\api\\apiresponsewitherror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\responses\\api\\apiresponsewithdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:responses\\api\\apiresponsewithdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\responses\\authresponse\\authresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:responses\\authresponse\\authresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\configuration\\jwtinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:configuration\\jwtinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\configurations\\dbconfigurations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:configurations\\dbconfigurations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\requestsdto\\carsshop\\carscreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:requestsdto\\carsshop\\carscreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\services\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:services\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\responses\\carsshop\\getcarsresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,24 +67,8 @@
       "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:db\\appdbcar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\controllers\\carscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:controllers\\carscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\configurations\\dbconfigurations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:configurations\\dbconfigurations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\controllers\\truckscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -62,24 +82,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CarsCreateDto.cs",
-              "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\RequestsDto\\CarsShop\\CarsCreateDto.cs",
-              "RelativeDocumentMoniker": "RequestsDto\\CarsShop\\CarsCreateDto.cs",
-              "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\RequestsDto\\CarsShop\\CarsCreateDto.cs",
-              "RelativeToolTip": "RequestsDto\\CarsShop\\CarsCreateDto.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAABoAAAAaAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "APIResponse.cs",
+              "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Responses\\API\\APIResponse.cs",
+              "RelativeDocumentMoniker": "Responses\\API\\APIResponse.cs",
+              "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Responses\\API\\APIResponse.cs",
+              "RelativeToolTip": "Responses\\API\\APIResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T13:29:36.743Z",
+              "WhenOpened": "2026-01-23T12:57:32.384Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
+              "Title": "AuthResponse.cs",
+              "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Responses\\AuthResponse\\AuthResponse.cs",
+              "RelativeDocumentMoniker": "Responses\\AuthResponse\\AuthResponse.cs",
+              "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Responses\\AuthResponse\\AuthResponse.cs",
+              "RelativeToolTip": "Responses\\AuthResponse\\AuthResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T12:39:29.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "ICarService.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Interfeces\\Services\\ICarService.cs",
               "RelativeDocumentMoniker": "Interfeces\\Services\\ICarService.cs",
@@ -87,12 +120,11 @@
               "RelativeToolTip": "Interfeces\\Services\\ICarService.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T13:29:26.443Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-16T13:29:26.443Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 13,
               "Title": "CarsUpdateDto.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\RequestsDto\\CarsShop\\CarsUpdateDto.cs",
               "RelativeDocumentMoniker": "RequestsDto\\CarsShop\\CarsUpdateDto.cs",
@@ -100,12 +132,37 @@
               "RelativeToolTip": "RequestsDto\\CarsShop\\CarsUpdateDto.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T13:29:45.256Z",
+              "WhenOpened": "2026-01-16T13:29:45.256Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CarsController.cs",
+              "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\CarsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CarsController.cs",
+              "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\CarsController.cs",
+              "RelativeToolTip": "Controllers\\CarsController.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAiwFEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T11:24:27.96Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "APIResponseWithData.cs",
+              "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Responses\\API\\APIResponseWithData.cs",
+              "RelativeDocumentMoniker": "Responses\\API\\APIResponseWithData.cs",
+              "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Responses\\API\\APIResponseWithData.cs",
+              "RelativeToolTip": "Responses\\API\\APIResponseWithData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T12:58:05.108Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "GetCarsResponse.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Responses\\CarsShop\\GetCarsResponse.cs",
               "RelativeDocumentMoniker": "Responses\\CarsShop\\GetCarsResponse.cs",
@@ -113,25 +170,24 @@
               "RelativeToolTip": "Responses\\CarsShop\\GetCarsResponse.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-18T18:05:21.734Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-18T18:05:21.734Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-06T10:42:52.566Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
               "Title": "CarService.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Services\\CarService.cs",
               "RelativeDocumentMoniker": "Services\\CarService.cs",
@@ -139,12 +195,11 @@
               "RelativeToolTip": "Services\\CarService.cs",
               "ViewState": "AgIAADoAAAAAAAAAAAAkwBoAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-06T09:15:41.623Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-06T09:15:41.623Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 15,
               "Title": "AppDbCar.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Db\\AppDbCar.cs",
               "RelativeDocumentMoniker": "Db\\AppDbCar.cs",
@@ -152,62 +207,89 @@
               "RelativeToolTip": "Db\\AppDbCar.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T13:29:17.549Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-16T13:29:17.549Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CarsController.cs",
-              "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\CarsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CarsController.cs",
-              "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\CarsController.cs",
-              "RelativeToolTip": "Controllers\\CarsController.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAADgAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "APIResponseWithError.cs",
+              "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Responses\\API\\APIResponseWithError.cs",
+              "RelativeDocumentMoniker": "Responses\\API\\APIResponseWithError.cs",
+              "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Responses\\API\\APIResponseWithError.cs",
+              "RelativeToolTip": "Responses\\API\\APIResponseWithError.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-06T11:24:27.96Z",
+              "WhenOpened": "2026-01-23T12:58:26.727Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "DBConfigurations.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Configurations\\DBConfigurations.cs",
               "RelativeDocumentMoniker": "Configurations\\DBConfigurations.cs",
               "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Configurations\\DBConfigurations.cs",
               "RelativeToolTip": "Configurations\\DBConfigurations.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-18T18:06:44.734Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "AuthService.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "Services\\AuthService.cs",
               "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Services\\AuthService.cs",
               "RelativeToolTip": "Services\\AuthService.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAgwDwAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAwBkAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-11T17:32:16.921Z"
+              "WhenOpened": "2026-01-11T17:32:16.921Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 4,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\AuthController.cs",
               "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAowBoAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAwDgAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T18:04:47.342Z"
+              "WhenOpened": "2026-01-08T18:04:47.342Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 8,
+              "Title": "JWTInfo.cs",
+              "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Configuration\\JWTInfo.cs",
+              "RelativeDocumentMoniker": "Configuration\\JWTInfo.cs",
+              "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Configuration\\JWTInfo.cs",
+              "RelativeToolTip": "Configuration\\JWTInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T12:37:17.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CarsCreateDto.cs",
+              "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\RequestsDto\\CarsShop\\CarsCreateDto.cs",
+              "RelativeDocumentMoniker": "RequestsDto\\CarsShop\\CarsCreateDto.cs",
+              "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\RequestsDto\\CarsShop\\CarsCreateDto.cs",
+              "RelativeToolTip": "RequestsDto\\CarsShop\\CarsCreateDto.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAowBoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T13:29:36.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "TrucksController.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\TrucksController.cs",
               "RelativeDocumentMoniker": "Controllers\\TrucksController.cs",
@@ -219,7 +301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
