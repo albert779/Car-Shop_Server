@@ -1,5 +1,6 @@
 ﻿using Azure;
 using CarsShop.RequestsDto.Login;
+using CarsShop.Responses.API;
 using CarsShop.Responses.Auth;
 using CarsShop.Services.Auth;
 using Microsoft.AspNetCore.Authorization;
@@ -41,17 +42,19 @@ namespace IDGCoreWebAPI.Controllers
 
         // LOGIN
         [HttpPost("login")]
-        public async Task<ActionResult<AuthResponse>> Login([FromBody] LoginDto request)
+        public async Task<ActionResult<APIResponse>> Login([FromBody] LoginDto request)
         {
             if (request == null)
-                return BadRequest("Invalid data");
+                return BadRequest(APIResponseWithError.Create("Invalid data"));
 
             var result = await _authService.LoginAsync(request);
 
             if (!result.Success)
-                return BadRequest(result.Message);
+                return BadRequest(APIResponseWithError.Create(result.Message));
 
-            return Ok(result);
+            var response = APIResponseWithData<string>.Create(result.Token);
+            
+            return Ok(response);
         }
     }
 }

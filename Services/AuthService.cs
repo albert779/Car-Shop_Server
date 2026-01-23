@@ -2,6 +2,7 @@
 using CarsShop.Db;
 using CarsShop.Db.Models;
 using CarsShop.RequestsDto.Login;
+using CarsShop.Responses.API;
 using CarsShop.Responses.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -56,16 +57,17 @@ namespace CarsShop.Services.Auth
             var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
 
             if (user == null)
-                return new AuthResponse(false, string.Empty, AuthService.ErrorEmailOrPasswordWrong);
+                return AuthResponse.GetResponseWithError(AuthService.ErrorEmailOrPasswordWrong);
 
             var result = _hasher.VerifyHashedPassword(user, user.Password, request.Password);
 
             if (result == PasswordVerificationResult.Failed)
-                return new AuthResponse(false, string.Empty, AuthService.ErrorEmailOrPasswordWrong);
+                return AuthResponse.GetResponseWithError(AuthService.ErrorEmailOrPasswordWrong);
 
             string token = GenerateJwt(user);
 
-            return new AuthResponse(true, token);
+            var tokenResponse = AuthResponse.GetResponseWithToken(token);
+            return tokenResponse;
         }
 
         private string GenerateJwt(User user)

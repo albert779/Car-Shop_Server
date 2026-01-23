@@ -1,5 +1,6 @@
 ﻿using CarsShop.Interfeces.Db;
 using CarsShop.RequestsDto.CarsShop;
+using CarsShop.Responses.API;
 using CarsShop.Responses.CarsShop;
 using CarsShop.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -79,17 +80,24 @@ namespace IDGCoreWebAPI.Controllers
             }
 
             [HttpDelete("{id}")]
-            public async Task<IActionResult> Delete([FromRoute] int id)
+            public async Task<ActionResult<APIResponse>> Delete([FromRoute] int id)
             {
+                APIResponse response = null;
 
                 bool isDeleted = _carService.DeleteAsync(id);
 
-                if (isDeleted == false)
+
+                if (isDeleted)
                 {
-                    return NotFound($"the item with id {id} not found");
+                    response = APIResponseWithData<int>.Create(id);
+
+                }
+                else
+                {
+                    response = APIResponseWithError.Create("the item with id {id} not found");
                 }
 
-                return NoContent();
+                return Ok(response);
             }
         }
     }
