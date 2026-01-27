@@ -6,99 +6,100 @@ using CarsShop.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IDGCoreWebAPI.Controllers
+namespace CarsShop.Controllers
 {
-
-    namespace CarsShop.Controllers
+    [Authorize]
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CarsController : ControllerBase
     {
-        [Authorize]
-        [ApiController]
-        [Route("api/[controller]")]
-        public class CarsController : ControllerBase
+        private readonly ICarService _carService;
+
+        public CarsController(ICarService carService)
         {
-            private readonly ILogger<CarsController>? _logger;
-            private readonly ICarService _carService;
+            _carService = carService;
+        }
 
-            public CarsController(ILogger<CarsController> logger, ICarService car_carService)
+        // ============================
+        // GET ALL
+        // ============================
+        [HttpGet]
+        public ActionResult<APIResponse> GetAll()
+        {
+            var cars = _carService.GetList();
+
+            if (cars == null || !cars.Any())
             {
-                _logger = logger;
-                ArgumentNullException.ThrowIfNull(car_carService);
-                this._carService = car_carService;
-            }
-            //[AllowAnonymous]
-            //[Authorize]
-            [HttpGet]
-            public ActionResult<IEnumerable<GetCarstResponse>> GeAll()
-            {
-                var result = _carService.GetList();
-
-                if (result == null)
-                    return NotFound();
-
-                return Ok(result);
+                return Ok(APIResponseWithError.Create("No cars found"));
             }
 
+            return Ok(APIResponseWithData<IEnumerable<GetCarstResponse>>.Create(cars));
+        }
 
-            [HttpPost]
-            public async Task<ActionResult<GetCarstResponse>> Create([FromBody] CarsCreateDto request)
+        // ============================
+        // CREATE
+        // ============================
+        [HttpPost]
+        public async Task<ActionResult<APIResponse>> Create([FromBody] CarsCreateDto request)
+        {
+            if (request == null)
             {
-                if (request == null)
-                    return BadRequest();
-
-                //var response = _carService.AddAsync(request);
-                //return Ok(response);
-
-                // return Task.FromResult<ActionResult<GetCarstResponse>>(Ok(response));
-
-                try
-                {
-                    var response = await _carService.AddAsync(request); // <-- await here
-                    return Ok(response);
-                }
-                catch (Exception ex)
-                {
-                    // log ex somewhere
-                    return StatusCode(500, ex.ToString());
-                }
+                return BadRequest(APIResponseWithError.Create("Invalid request"));
             }
 
-            [HttpPut("{id}")]
-            public async Task<ActionResult<GetCarstResponse>> Update([FromRoute] int id, [FromBody] CarsUpdateDto request)
+            try
             {
-                if (id < 1)
-                {
-                    return BadRequest("ID in URL does not match ID");
-                }
+                var createdCar = await _carService.AddAsync(request);
 
-                GetCarstResponse response = _carService.UpdateAsync(id, request);
-                if (request == null)
-                {
-                    return NotFound($"the item with id {id} not found");
-                }
+                return Ok(APIResponseWithData<GetCarstResponse>.Create(createdCar));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(
+                    500,
+                    APIResponseWithError.Create("An unexpected error occurred")
+                );
+            }
+        }
 
-                return Ok(response);
+        // ============================
+        // UPDATE
+        // ============================
+        [HttpPut("{id}")]
+        public async Task<ActionResult<APIResponse>> Update(
+            [FromRoute] int id,
+            [FromBody] CarsUpdateDto request)
+        {
+            if (id <= 0 || request == null)
+            {
+                return BadRequest(APIResponseWithError.Create("Invalid data"));
             }
 
-            [HttpDelete("{id}")]
-            public async Task<ActionResult<APIResponse>> Delete([FromRoute] int id)
+            // Remove 'await' since UpdateAsync is not actually async and returns GetCarstResponse synchronously
+            var updatedCar = _carService.UpdateAsync(id, request);
+
+            if (updatedCar == null)
             {
-                APIResponse response = null;
-
-                bool isDeleted = _carService.DeleteAsync(id);
-
-
-                if (isDeleted)
-                {
-                    response = APIResponseWithData<int>.Create(id);
-
-                }
-                else
-                {
-                    response = APIResponseWithError.Create("the item with id {id} not found");
-                }
-
-                return Ok(response);
+                return Ok(APIResponseWithError.Create($"Car with id {id} not found"));
             }
+
+            return Ok(APIResponseWithData<GetCarstResponse>.Create(updatedCar));
+        }
+
+        // ============================
+        // DELETE
+        // ============================
+        [HttpDelete("{id}")]
+        public ActionResult<APIResponse> Delete([FromRoute] int id)
+        {
+            bool isDeleted = _carService.DeleteAsync(id);
+
+            if (isDeleted)
+            {
+                return Ok(APIResponseWithData<int>.Create(id));
+            }
+
+            return Ok(APIResponseWithError.Create($"The item with id {id} not found"));
         }
     }
 }

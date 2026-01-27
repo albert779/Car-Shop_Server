@@ -4,7 +4,7 @@ namespace CarsShop.RequestsDto.TrucksShop
 {
     public class TrucksCreateDto
     {
-        private string Details;
+        public string Details;
 
         public string? Color { get; set; }
 
