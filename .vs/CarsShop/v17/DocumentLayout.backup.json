@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:controllers\\truckscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\controllers\\carscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:controllers\\carscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\interfeces\\services\\itruckservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:interfeces\\services\\itruckservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -25,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\services\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:services\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\controllers\\carscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|solutionrelative:controllers\\carscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19B724BF-BB82-40A4-A569-CAF81CEB731F}|CarsShop.csproj|c:\\users\\xnes\\desktop\\car-shop_server\\responses\\api\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -98,7 +98,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "TrucksCreateDto.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\RequestsDto\\TrucksShop\\TrucksCreateDto.cs",
               "RelativeDocumentMoniker": "RequestsDto\\TrucksShop\\TrucksCreateDto.cs",
@@ -106,12 +106,11 @@
               "RelativeToolTip": "RequestsDto\\TrucksShop\\TrucksCreateDto.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAUwA0AAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T10:27:36.14Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-27T10:27:36.14Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ITruckService.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Interfeces\\Services\\ITruckService.cs",
               "RelativeDocumentMoniker": "Interfeces\\Services\\ITruckService.cs",
@@ -119,12 +118,11 @@
               "RelativeToolTip": "Interfeces\\Services\\ITruckService.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAAABAAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T09:12:51.968Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-27T09:12:51.968Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "TruckService.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Services\\TruckService.cs",
               "RelativeDocumentMoniker": "Services\\TruckService.cs",
@@ -132,12 +130,11 @@
               "RelativeToolTip": "Services\\TruckService.cs",
               "ViewState": "AgIAALAAAAAAAAAAAAAAALsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T08:25:08.459Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-27T08:25:08.459Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ICarService.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Interfeces\\Services\\ICarService.cs",
               "RelativeDocumentMoniker": "Interfeces\\Services\\ICarService.cs",
@@ -145,8 +142,7 @@
               "RelativeToolTip": "Interfeces\\Services\\ICarService.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T13:29:26.443Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-16T13:29:26.443Z"
             },
             {
               "$type": "Document",
@@ -154,29 +150,29 @@
               "Title": "TrucksController.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\TrucksController.cs",
               "RelativeDocumentMoniker": "Controllers\\TrucksController.cs",
-              "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\TrucksController.cs*",
-              "RelativeToolTip": "Controllers\\TrucksController.cs*",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAAAIsAAABlAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\TrucksController.cs",
+              "RelativeToolTip": "Controllers\\TrucksController.cs",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAqwKAAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-06T11:37:06.045Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "CarsController.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\CarsController.cs",
               "RelativeDocumentMoniker": "Controllers\\CarsController.cs",
               "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\CarsController.cs",
               "RelativeToolTip": "Controllers\\CarsController.cs",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAswGgAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAswGgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-06T11:24:27.96Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
             },
             {
               "$type": "Document",
@@ -204,7 +200,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "CarService.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Services\\CarService.cs",
               "RelativeDocumentMoniker": "Services\\CarService.cs",
@@ -212,8 +208,7 @@
               "RelativeToolTip": "Services\\CarService.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAqwAQAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-06T09:15:41.623Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-06T09:15:41.623Z"
             },
             {
               "$type": "Document",
