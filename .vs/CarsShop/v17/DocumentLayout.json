@@ -94,8 +94,25 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TrucksController.cs",
+              "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\TrucksController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TrucksController.cs",
+              "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\TrucksController.cs",
+              "RelativeToolTip": "Controllers\\TrucksController.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAIwKAAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T11:37:06.045Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -134,19 +151,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TrucksController.cs",
-              "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\TrucksController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TrucksController.cs",
-              "ToolTip": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\Controllers\\TrucksController.cs",
-              "RelativeToolTip": "Controllers\\TrucksController.cs",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAqwKAAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-06T11:37:06.045Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "TrucksCreateDto.cs",
               "DocumentMoniker": "C:\\Users\\XNES\\Desktop\\Car-Shop_Server\\RequestsDto\\TrucksShop\\TrucksCreateDto.cs",
@@ -156,10 +160,6 @@
               "ViewState": "AgIAAAUAAAAAAAAAAAAUwA0AAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-27T10:27:36.14Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
             },
             {
               "$type": "Document",
