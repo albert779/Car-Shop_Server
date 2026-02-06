@@ -55,6 +55,18 @@
               "target": "Package",
               "version": "[1.47.3, )"
             },
+            "BenchmarkDotNet": {
+              "target": "Package",
+              "version": "[0.15.8, )"
+            },
+            "BenchmarkSuite.ConsoleRunner": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
+            "EF.Core.Repositories.Test.InMemory": {
+              "target": "Package",
+              "version": "[1.2.2, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[9.0.9, )"

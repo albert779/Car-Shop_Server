@@ -5,6 +5,10 @@ using CarsShop.Responses.CarsShop;
 using CarsShop.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Diagnostics.Tracing.Parsers.AspNet;
+using System.Net.Mail;
+using System.Runtime.InteropServices;
+using System.Security.Claims;
 
 namespace CarsShop.Controllers
 {
@@ -14,10 +18,12 @@ namespace CarsShop.Controllers
     public class CarsController : ControllerBase
     {
         private readonly ICarService _carService;
+        private readonly ILogger<CarsController> _logger;
 
-        public CarsController(ICarService carService)
+        public CarsController(ICarService carService, ILogger<CarsController> logger)
         {
             _carService = carService;
+            this._logger = logger;
         }
 
         // ============================
@@ -26,6 +32,9 @@ namespace CarsShop.Controllers
         [HttpGet]
         public ActionResult<APIResponse> GetAll()
         {
+            var claims = this.User.Claims;
+            var emailaddress = claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Email))!.Value;
+            _logger.LogInformation("Fetching all cars by user {0}", emailaddress);
             var cars = _carService.GetList();
 
             if (cars == null || !cars.Any())
