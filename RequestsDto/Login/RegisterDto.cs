@@ -14,6 +14,7 @@ namespace CarsShop.RequestsDto.Login
         public DateOnly BirthDate { get; set; }
         
         public string Phone { get; set; }
+        public int RoleId { get; set; } = 2;
 
         public User ConvertToDbModel()
         {
@@ -27,6 +28,8 @@ namespace CarsShop.RequestsDto.Login
                 Id = Id,
                 Phone = Phone,
                 Password = string.Empty,
+                RoleId = RoleId
+                    
 
 
                 //BirthDate = DateOnly.ParseExact(

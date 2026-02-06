@@ -1,12 +1,13 @@
+using CarsShop.Configuration;
 using CarsShop.Configurations;
 using CarsShop.Interfeces.Db;
+using CarsShop.Interfeces.Services;
 using CarsShop.Services;
 using CarsShop.Services.Auth;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using CarsShop.Configuration;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,6 +48,8 @@ builder.Services.AddDbContextApp(builder.Configuration);
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddScoped<ITruckService, TruckService>();
+builder.Services.AddScoped<IJwtService, JwtService>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {

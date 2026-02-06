@@ -10,5 +10,6 @@
         public DateOnly BirthDate { get; set; }
         public DateOnly CreationDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
         public string Phone { get; set; } = "";
+        public int RoleId { get; set; }
     }
 }

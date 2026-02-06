@@ -1,14 +1,13 @@
 ﻿using CarsShop.Configuration;
 using CarsShop.Db;
 using CarsShop.Db.Models;
+using CarsShop.Interfeces.Services;
 using CarsShop.RequestsDto.Login;
-using CarsShop.Responses.API;
 using CarsShop.Responses.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
@@ -16,17 +15,18 @@ namespace CarsShop.Services.Auth
 {
     public class AuthService : IAuthService
     {
-        //private readonly List<User> _users = new();
         private readonly PasswordHasher<User> _hasher;
         private readonly AppDbUser _db;
-        private readonly JWTInfo _jwtOptions;
+        private readonly string _key;
+        private readonly IJwtService _jwtService;
         private static readonly string ErrorEmailOrPasswordWrong = "Invalid email or password";
 
 
-        public AuthService(AppDbUser db, IOptions<JWTInfo> jwtOptions)
+        public AuthService(AppDbUser db, IJwtService jwtService, IOptions<JWTInfo> jwtOptions)
         {
             this._db = db;
-            this._jwtOptions = jwtOptions.Value;
+            this._key= jwtOptions.Value.Key;
+            this._jwtService = jwtService;
             this._hasher = new();
         }
 
@@ -54,7 +54,8 @@ namespace CarsShop.Services.Auth
 
         public async Task<AuthResponse> LoginAsync(LoginDto request)
         {
-            var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+            var email = request.Email.ToLower();
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == email);
 
             if (user == null)
                 return AuthResponse.GetResponseWithError(AuthService.ErrorEmailOrPasswordWrong);
@@ -72,25 +73,23 @@ namespace CarsShop.Services.Auth
 
         private string GenerateJwt(User user)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.Key));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            IEnumerable<Claim> claims = GetUserClaims(user);
 
-            var claims = new[]
+            string token = _jwtService.GenerateJwt(claims, creds);
+            return token;
+        }
+
+        private IEnumerable<Claim> GetUserClaims(User user)
+        {
+            return new[]
             {
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim("id", user.Id.ToString())
+                new Claim("id", user.Id.ToString()),
+                new Claim("roleId", user.RoleId.ToString())
             };
-
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.UtcNow.AddHours(_jwtOptions.ExpiresInMinutes),
-                signingCredentials: creds,
-                audience:_jwtOptions.Audience,
-                issuer : _jwtOptions.Issuer
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
