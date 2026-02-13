@@ -15,6 +15,7 @@ namespace CarsShop.Services.Auth
 {
     public class AuthService : IAuthService
     {
+        public static string ClaimIdKey = "id";
         private readonly PasswordHasher<User> _hasher;
         private readonly AppDbUser _db;
         private readonly string _key;
@@ -87,7 +88,7 @@ namespace CarsShop.Services.Auth
             {
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim("id", user.Id.ToString()),
+                new Claim(AuthService.ClaimIdKey, user.Id.ToString()),
                 new Claim("roleId", user.RoleId.ToString())
             };
         }

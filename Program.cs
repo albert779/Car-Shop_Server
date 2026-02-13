@@ -2,6 +2,7 @@ using CarsShop.Configuration;
 using CarsShop.Configurations;
 using CarsShop.Interfeces.Db;
 using CarsShop.Interfeces.Services;
+using CarsShop.Middlewares;
 using CarsShop.Services;
 using CarsShop.Services.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -11,6 +12,8 @@ using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 builder.Services
     .AddOptions<JWTInfo>()
@@ -49,7 +52,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddScoped<ITruckService, TruckService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
-
+builder.Services.AddScoped<LoggingMiddleware>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -126,10 +129,18 @@ app.UseCors("AllowAngular");
 
 // 3?? Security middleware
 app.UseAuthentication();
+
+// add params to the log (user id and email) 
+app.UseMiddleware<LoggingMiddleware>();
+
 app.UseAuthorization();
+
+
 
 // 4?? Endpoints LAST
 app.MapControllers();
+
+
 
 app.Run();
 

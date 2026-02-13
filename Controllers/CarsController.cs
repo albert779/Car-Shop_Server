@@ -32,9 +32,7 @@ namespace CarsShop.Controllers
         [HttpGet]
         public ActionResult<APIResponse> GetAll()
         {
-            var claims = this.User.Claims;
-            var emailaddress = claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Email))!.Value;
-            _logger.LogInformation("Fetching all cars by user {0}", emailaddress);
+            _logger.LogInformation("Fetching all cars");
             var cars = _carService.GetList();
 
             if (cars == null || !cars.Any())
