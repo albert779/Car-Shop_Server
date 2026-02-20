@@ -1,5 +1,7 @@
-﻿using CarsShop.Controllers;
+﻿
+
 using CarsShop.Services.Auth;
+using System.Diagnostics;
 using System.Security.Claims;
 
 namespace CarsShop.Middlewares
@@ -10,33 +12,58 @@ namespace CarsShop.Middlewares
 
         public LoggingMiddleware(ILogger<LoggingMiddleware> logger)
         {
-            this._logger = logger;
+            _logger = logger;
         }
+
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            var user = context.User!;
-            var email = user.Claims.Single(x => x.Type.Equals(ClaimTypes.Email)).Value;
-            var id = user.Claims.Single(x => x.Type.Equals(AuthService.ClaimIdKey)).Value;
+            var stopwatch = Stopwatch.StartNew();
 
+            Dictionary<string, object> scopeValues = GetSopeValues(context);
 
-            var logsFormatterValues = new Dictionary<string, object>()
+            using (_logger.BeginScope(scopeValues))
             {
-                {
-                    ClaimTypes.Email.ToString().Split('/').Last(), email
-                },
-                {
-                    AuthService.ClaimIdKey, id
-                },
-                {
-                     "RequestId", Guid.NewGuid()
-                }
-            };
-            using (_logger.BeginScope(logsFormatterValues))
-            {
-
                 await next(context);
+
+                stopwatch.Stop();
+
+                _logger.LogInformation(
+                    "HTTP responded {StatusCode} in {ElapsedMs} ms",
+                    context.Response.StatusCode,
+                    stopwatch.ElapsedMilliseconds
+                );
             }
-                
+        }
+
+        private static Dictionary<string, object> GetSopeValues(HttpContext context)
+        {
+            var requestId = Guid.NewGuid();
+            var user = context.User;
+            var scopeValues = new Dictionary<string, object>
+            {
+               ["RequestId"] = requestId,
+                ["RequestPath"] = context.Request.Path.ToString(),
+                ["Method"] = context.Request.Method
+            };
+
+            if (user.Identity.IsAuthenticated)
+            {
+                var email = GetClaim(user, ClaimTypes.Email);
+                var userId = GetClaim(user, AuthService.ClaimIdKey);
+                scopeValues.Add("Email", email);
+                scopeValues.Add("UserId", userId);
+            }
+
+           
+            return scopeValues;
+        }
+
+        private static string GetClaim(ClaimsPrincipal user, string type)
+        {
+                var value = user.FindFirst(type)?.Value;
+                if (!string.IsNullOrWhiteSpace(value))
+                    return value;
+            return "$Claim is not found by the key ${type}";
         }
     }
 }
