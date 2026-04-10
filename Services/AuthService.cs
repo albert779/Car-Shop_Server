@@ -1,4 +1,5 @@
-﻿using CarsShop.Configuration;
+﻿
+using CarsShop.Configuration;
 using CarsShop.Db;
 using CarsShop.Db.Models;
 using CarsShop.Interfeces.Services;
@@ -21,6 +22,8 @@ namespace CarsShop.Services.Auth
         private readonly string _key;
         private readonly IJwtService _jwtService;
         private static readonly string ErrorEmailOrPasswordWrong = "Invalid email or password";
+
+
 
 
         public AuthService(AppDbUser db, IJwtService jwtService, IOptions<JWTInfo> jwtOptions)
@@ -59,19 +62,22 @@ namespace CarsShop.Services.Auth
             var user = await _db.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == email);
 
             if (user == null)
-                return AuthResponse.GetResponseWithError(AuthService.ErrorEmailOrPasswordWrong);
+                return AuthResponse.GetResponseWithError(ErrorEmailOrPasswordWrong);
 
             var result = _hasher.VerifyHashedPassword(user, user.Password, request.Password);
-
             if (result == PasswordVerificationResult.Failed)
-                return AuthResponse.GetResponseWithError(AuthService.ErrorEmailOrPasswordWrong);
+                return AuthResponse.GetResponseWithError(ErrorEmailOrPasswordWrong);
 
             string token = GenerateJwt(user);
 
-            var tokenResponse = AuthResponse.GetResponseWithToken(token);
-            return tokenResponse;
+            return AuthResponse.GetResponseWithToken(
+                token,
+                user.Name,   // changed from user.Name
+                user.LastName,
+                user.Email,
+                user.Phone
+            );
         }
-
         private string GenerateJwt(User user)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key));
@@ -92,6 +98,118 @@ namespace CarsShop.Services.Auth
                 new Claim("roleId", user.RoleId.ToString())
             };
         }
+        /*
+        public async Task<AuthResult> LoginAsync(LoginDto request)
+        {
+            var email = request.Email.ToLower();
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == email);
+
+            if (user == null)
+                return AuthResult.GetResponseWithError("Invalid email or password");
+
+            var result = _hasher.VerifyHashedPassword(user, user.Password, request.Password);
+            if (result == PasswordVerificationResult.Failed)
+                return AuthResult.GetResponseWithError("Invalid email or password");
+
+            string token = GenerateJwt(user);
+
+            return AuthResult.GetResponseWithToken(
+                token,
+                user.Name,
+                user.LastName,
+                user.Email,
+                user.Phone
+            );
+        }
+        */
     }
 }
 
+
+/*
+using CarsShop.Configuration;
+using CarsShop.Db;
+using CarsShop.Db.Models;
+using CarsShop.Interfeces.Services;
+using CarsShop.RequestsDto.Login;
+using CarsShop.Responses.Auth;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.Text;
+
+namespace CarsShop.Services.Auth
+{
+    public class AuthService : IAuthService
+    {
+        private readonly AppDbUser _db;
+        private readonly PasswordHasher<User> _hasher;
+        private readonly IJwtService _jwtService;
+        private readonly string _key;
+
+        private static readonly string ErrorEmailOrPasswordWrong = "Invalid email or password";
+
+        public AuthService(AppDbUser db, IJwtService jwtService, IOptions<JWTInfo> jwtOptions)
+        {
+            _db = db;
+            _jwtService = jwtService;
+            _key = jwtOptions.Value.Key;
+            _hasher = new PasswordHasher<User>();
+        }
+
+        public async Task<bool> RegisterAsync(RegisterDto request)
+        {
+            if (_db.Users.Any(u => u.Email == request.Email))
+                return false;
+
+            var dbUser = request.ConvertToDbModel();
+            dbUser.Password = _hasher.HashPassword(dbUser, request.Password);
+
+            _db.Add(dbUser);
+            await _db.SaveChangesAsync();
+            return true;
+        }
+
+        // ✅ Corrected LoginAsync to return AuthResponse
+        public async Task<AuthResponse> LoginAsync(LoginDto request)
+        {
+            var email = request.Email.ToLower();
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == email);
+
+            if (user == null)
+                return AuthResponse.GetResponseWithError(ErrorEmailOrPasswordWrong);
+
+            var result = _hasher.VerifyHashedPassword(user, user.Password, request.Password);
+            if (result == PasswordVerificationResult.Failed)
+                return AuthResponse.GetResponseWithError(ErrorEmailOrPasswordWrong);
+
+            string token = GenerateJwt(user);
+
+            return AuthResponse.GetResponseWithToken(
+                token,
+                user.FirstName,   // changed from user.Name
+                user.LastName,
+                user.Email,
+                user.Phone
+            );
+        }
+
+        private string GenerateJwt(User user)
+        {
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.Name, user.Name + " " + user.LastName),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim("id", user.Id.ToString()),
+                new Claim("roleId", user.RoleId.ToString())
+            };
+
+            return _jwtService.GenerateJwt(claims, creds);
+        }
+    }
+}
+*/

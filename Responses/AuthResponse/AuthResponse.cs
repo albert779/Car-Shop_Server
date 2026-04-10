@@ -1,29 +1,50 @@
-﻿namespace CarsShop.Responses.Auth
+﻿
+
+namespace CarsShop.Responses.Auth
 {
     public class AuthResponse
     {
-        public bool Success { get; }
-        public string Message { get; }
-        public string Token { get; }
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
 
-        public static AuthResponse GetResponseWithError(string erorrMessage)
+        public bool Success { get;  set; }
+        public string Message { get;  set; } = string.Empty; // Optional success/failure message
+        public string Token { get;  set; } = string.Empty;
+        public string Error { get;  set; } = string.Empty;   // Error message
+
+        // ✅ Factory method for error
+        public static AuthResponse GetResponseWithError(string errorMessage)
         {
-            return new AuthResponse(false, string.Empty, erorrMessage);
+            return new AuthResponse
+            {
+                Success = false,
+                Error = errorMessage
+            };
         }
 
-        public static AuthResponse GetResponseWithToken(string token)
+        // ✅ Factory method for success
+        public static AuthResponse GetResponseWithToken(
+            string token,
+            string firstName = "",
+            string lastName = "",
+            string email = "",
+            string phone = ""
+        )
         {
-            return new AuthResponse(true, token, string.Empty);
+            return new AuthResponse
+            {
+                Success = true,
+                Token = token,
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                Phone = phone
+            };
         }
 
-        private AuthResponse(bool success, string token, string message)
-        {
-            this.Token = token;
-            this.Success = success;
-            this.Message = message;
-        }
+        // Private constructor ensures factory methods are used
+        public AuthResponse() { }
     }
-
-
-
 }

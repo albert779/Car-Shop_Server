@@ -117,6 +117,7 @@ namespace CarsShop.Controllers
     public class TrucksController : ControllerBase
     {
         private readonly ITruckService _truckService;
+        private readonly ILogger<CarsController> _logger;
 
         public TrucksController(ITruckService truckService)
         {
@@ -127,6 +128,7 @@ namespace CarsShop.Controllers
         // GET ALL
         // GET: api/trucks
         // =========================
+        
         [HttpGet]
         public async Task<ActionResult<APIResponse>> GetAll()
         {
@@ -208,6 +210,20 @@ namespace CarsShop.Controllers
             );
         }
 
+        /*
+        [HttpGet]
+        public async Task<ActionResult<APIResponse>> GetAll([FromQuery] string? search)
+        {
+            _logger.LogInformation("Fetching cars with search: {Search}", search);
+
+            var trucks = await _truckService.GetListAsync(search);
+
+            if (trucks == null || !trucks.Any())
+                return NotFound(APIResponseWithError.Create("No cars found"));
+
+            return Ok(APIResponseWithData<IEnumerable<Responses.TrucksShop.GetCarstResponse>>.Create(trucks));
+        }
+        */
         // =========================
         // DELETE
         // DELETE: api/trucks/5

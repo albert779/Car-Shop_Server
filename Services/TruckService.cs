@@ -121,6 +121,7 @@ namespace CarsShop.Services
     public class TruckService : ITruckService
     {
         private readonly AppDbTruck _db;
+        private readonly AppDbTruck _context;
 
         public TruckService(AppDbTruck db)
         {
@@ -180,11 +181,44 @@ namespace CarsShop.Services
             return true;
         }
 
+        public async Task<List<GetCarstResponse>> GetTrucksAsync(string? search)
+        {
+            var query = _context.Trucks.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                var s = search.Trim().ToLower();
+
+                query = query.Where(t =>
+                    (t.Model != null && t.Model.ToLower().Contains(s)) ||
+                    (t.Color != null && t.Color.ToLower().Contains(s))
+                );
+            }
+
+            return await query
+                .Select(t => new GetCarstResponse
+                {
+                    Id = t.Id,
+                    Model = t.Model,
+                    Color = t.Color,
+                    Price = t.Price,
+                    Date = t.Date,
+                    Image = t.Image,
+                    Details = t.Details
+                })
+                .ToListAsync();
+        }
+
         // GET ALL
         public async Task<IEnumerable<GetCarstResponse>> GetListAsync()
         {
             var trucks = await _db.Trucks.ToListAsync();
             return trucks.Select(GetCarstResponse.ConvertToResponseFromDbModel);
+        }
+
+        public Task<IEnumerable<GetCarstResponse>> GetListAsync(string? search)
+        {
+            throw new NotImplementedException();
         }
     }
 }

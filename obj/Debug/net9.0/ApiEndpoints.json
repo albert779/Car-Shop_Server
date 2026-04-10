@@ -39,17 +39,7 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "CarsShop.Responses.Auth.AuthResponse",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "CarsShop.Controllers.CarsController",
@@ -58,7 +48,13 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "CarsShop.Responses.API.APIResponse",
@@ -88,6 +84,26 @@
     "ReturnTypes": [
       {
         "Type": "CarsShop.Responses.API.APIResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CarsShop.Controllers.CarsController",
+    "Method": "Get_carService",
+    "RelativePath": "api/Cars",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "CarsShop.Interfeces.Db.ICarService",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -142,17 +158,23 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CarsShop.Api.Controllers.RequestInfoController",
+    "Method": "SendRequest",
+    "RelativePath": "api/request",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Type": "CarsShop.Responses.API.APIResponse",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "request",
+        "Type": "CarsShop.RequestsDto.RequestInfoDto",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "CarsShop.Controllers.TrucksController",
@@ -282,5 +304,21 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "CarsShop.Api.Controllers.TruckRequestController",
+    "Method": "PostRequest",
+    "RelativePath": "api/trucks/request",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "CarsShop.Db.Models.TruckRequestInfo",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

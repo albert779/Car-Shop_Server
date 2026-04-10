@@ -24,8 +24,11 @@ namespace CarsShop.Interfeces.Db
         Task<bool> DeleteAsync(int id);
 
         // Get all trucks as response DTOs
+        Task<IEnumerable<GetCarstResponse>> GetListAsync(string? search);
         Task<IEnumerable<GetCarstResponse>> GetListAsync();
 
-       
+        //Task<List<Truck>> SearchAsync(string? search);
+
+
     }
 }

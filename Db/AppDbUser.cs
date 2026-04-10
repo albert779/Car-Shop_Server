@@ -4,6 +4,7 @@ using Microsoft.Win32;
 
 namespace CarsShop.Db
 {
+    /*
     public class AppDbUser : DbContext
     {
         public AppDbUser(DbContextOptions options)
@@ -12,6 +13,15 @@ namespace CarsShop.Db
         }
 
         // This table will store users who register
+        public DbSet<User> Users { get; set; }
+    }
+    */
+    public class AppDbUser : DbContext
+    {
+        public AppDbUser(DbContextOptions<AppDbUser> options) : base(options)
+        {
+        }
+
         public DbSet<User> Users { get; set; }
     }
 }

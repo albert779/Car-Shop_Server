@@ -24,6 +24,7 @@ namespace IDGCoreWebAPI.Controllers
         }
 
         // REGISTER
+        /*
         [HttpPost("register")]
         public async Task<ActionResult<AuthResponse>> Register([FromBody] RegisterDto request)
         {
@@ -39,8 +40,23 @@ namespace IDGCoreWebAPI.Controllers
             //return Conflict(new { message = "Email already exists" });
             //return Ok();
         }
+        */
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterDto request)
+        {
+            if (request == null)
+                return BadRequest("Invalid data");
+
+            var result = await _authService.RegisterAsync(request);
+
+            if (!result)
+                return BadRequest("Email already exists");
+
+            return Ok("User registered successfully");
+        }
 
         // LOGIN
+        /*
         [HttpPost("login")]
         public async Task<ActionResult<APIResponse>> Login([FromBody] LoginDto request)
         {
@@ -52,8 +68,40 @@ namespace IDGCoreWebAPI.Controllers
             if (!result.Success)
                 return BadRequest(APIResponseWithError.Create(result.Message));
 
-            var response = APIResponseWithData<string>.Create(result.Token);
-            
+            //var response = APIResponseWithData<string>.Create(result.Token);
+            var response = APIResponseWithData<object>.Create(new
+            {
+                token = result.Token,
+                firstName = result.FirstName,
+                lastName = result.LastName,
+                email = result.Email,
+                phone=result.phone
+            });
+
+            return Ok(response);
+        }
+        */
+
+        [HttpPost("login")]
+        public async Task<ActionResult<APIResponse>> Login([FromBody] LoginDto request)
+        {
+            if (request == null)
+                return BadRequest(APIResponseWithError.Create("Invalid data"));
+
+            var result = await _authService.LoginAsync(request);
+
+            if (!result.Success)
+                return BadRequest(APIResponseWithError.Create(result.Message));
+
+            var response = APIResponseWithData<AuthResponse>.Create(new AuthResponse
+            {
+                Token = result.Token,
+                FirstName = result.FirstName,
+                LastName = result.LastName,
+                Email = result.Email,
+                Phone = result.Phone
+            });
+
             return Ok(response);
         }
     }
