@@ -1,4 +1,4 @@
-﻿
+﻿/*
 using CarsShop.Controllers;
 using CarsShop.Db.Models;
 using CarsShop.RequestsDto.CarsShop;
@@ -12,10 +12,10 @@ namespace CarsShop.Interfeces.Db
     {
         //Task<List<Truck>> GetListAsync();
         // Create a truck
-        Task<Truck> CreateAsync(TrucksCreateDto dto);
+        Task<Vehicle> CreateAsync(TrucksCreateDto dto);
 
         // Get a truck by ID
-        Task<Truck?> GetByIdAsync(int id);
+        Task<Vehicle?> GetByIdAsync(int id);
 
         // Update a truck by ID
         Task<bool> UpdateAsync(int id, TrucksUpdateDto dto);
@@ -32,3 +32,4 @@ namespace CarsShop.Interfeces.Db
 
     }
 }
+*/

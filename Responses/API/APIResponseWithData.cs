@@ -36,7 +36,7 @@ namespace CarsShop.Responses.API
         }
         */
 
-using CarsShop.Responses.TrucksShop;
+using CarsShop.Responses.API;
 
 namespace CarsShop.Responses.API
 {

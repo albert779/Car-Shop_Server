@@ -8,11 +8,15 @@ using CarsShop.Services;
 using CarsShop.Services.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Json;
 using System.Text;
+
+
+
 
 // ================= Serilog =================
 Log.Logger = new LoggerConfiguration()
@@ -25,20 +29,38 @@ Log.Logger = new LoggerConfiguration()
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog();
 
+// ================= DbContexts =================
+builder.Services.AddDbContext<AppDbContext>(options =>
+   // options.UseSqlServer(builder.Configuration.GetConnectionString("CarInfoRequestsConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//builder.Services.AddDbContextApp(builder.Configuration);
+
+
+var conn = builder.Configuration.GetConnectionString("DefaultConnection");
+
+if (string.IsNullOrEmpty(conn))
+{
+    throw new Exception("Connection string is NULL ❌");
+}
+
+Console.WriteLine("Connection OK ✅: " + conn);
+
+
 // ================= Options / Config =================
-builder.Services
-    .AddOptions<JWTInfo>()
+builder.Services.AddOptions<JWTInfo>()
     .Bind(builder.Configuration.GetSection("JWTInfo"))
     .ValidateDataAnnotations()
     .ValidateOnStart();
 
-builder.Services
-    .AddOptions<EmailSettingsConfig>()
+builder.Services.AddOptions<EmailSettingsConfig>()
     .Bind(builder.Configuration.GetSection("EmailSettings"))
     .ValidateDataAnnotations()
     .ValidateOnStart();
 
-var jwtInfo = builder.Configuration.GetSection("JWTInfo").Get<JWTInfo>();
+// DEBUG (optional but recommended)
+var emailSection = builder.Configuration.GetSection("EmailSettings");
+Console.WriteLine("SMTP USER: " + emailSection["SmtpUser"]);
 
 // ================= Services =================
 builder.Services.AddControllers();
@@ -54,29 +76,20 @@ builder.Services.AddCors(options =>
     });
 });
 
-// ================= DbContexts =================
-builder.Services.AddDbContextApp(builder.Configuration);
-
-builder.Services.AddDbContext<AppDbRequestInfo>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("CarInfoRequestsConnection"),
-        sqlOptions => sqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null)
-    )
-);
-
 // ================= Scoped services =================
 builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<ICarService, CarService>();
-builder.Services.AddScoped<ITruckService, TruckService>();
+builder.Services.AddScoped<IVehicleService, VehicleService>();
+//builder.Services.AddScoped<IVehicleService, VehicleService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<LoggingMiddleware>();
-builder.Services.AddScoped<EmailService>();
-builder.Services.AddScoped<IRequestInfoService, RequestInfoService>();
-builder.Services.AddScoped<ITruckRequestService, TruckRequestService>();
+//builder.Services.AddScoped<EmailService>();
+builder.Services.AddScoped<IRequestSubmitterService, RequestSubmitterService>();
+//builder.Services.AddScoped<IVehicleService, VehicleService>();
 
 // ================= Authentication =================
-builder.Services
-    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+var jwtInfo = builder.Configuration.GetSection("JWTInfo").Get<JWTInfo>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
@@ -117,6 +130,10 @@ app.UseExceptionHandler(errorApp =>
         }
     });
 });
+
+var test = builder.Configuration.GetSection("EmailSettings");
+Console.WriteLine("SMTP USER = " + test["SmtpUser"]);
+Console.WriteLine("SMTP PASS = " + test["SmtpPass"]);
 
 if (app.Environment.IsDevelopment())
 {

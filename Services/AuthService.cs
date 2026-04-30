@@ -18,7 +18,8 @@ namespace CarsShop.Services.Auth
     {
         public static string ClaimIdKey = "id";
         private readonly PasswordHasher<User> _hasher;
-        private readonly AppDbUser _db;
+        //private readonly AppDbUser _db;
+        private readonly AppDbContext _db;
         private readonly string _key;
         private readonly IJwtService _jwtService;
         private static readonly string ErrorEmailOrPasswordWrong = "Invalid email or password";
@@ -26,7 +27,7 @@ namespace CarsShop.Services.Auth
 
 
 
-        public AuthService(AppDbUser db, IJwtService jwtService, IOptions<JWTInfo> jwtOptions)
+        public AuthService(AppDbContext db, IJwtService jwtService, IOptions<JWTInfo> jwtOptions)
         {
             this._db = db;
             this._key= jwtOptions.Value.Key;
@@ -72,7 +73,7 @@ namespace CarsShop.Services.Auth
 
             return AuthResponse.GetResponseWithToken(
                 token,
-                user.Name,   // changed from user.Name
+                user.FirstName,   // changed from user.Name
                 user.LastName,
                 user.Email,
                 user.Phone
@@ -92,7 +93,7 @@ namespace CarsShop.Services.Auth
         {
             return new[]
             {
-                new Claim(ClaimTypes.Name, user.Name),
+                new Claim("FirstName", user.FirstName),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(AuthService.ClaimIdKey, user.Id.ToString()),
                 new Claim("roleId", user.RoleId.ToString())

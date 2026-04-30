@@ -5,18 +5,17 @@ namespace CarsShop.Configuration
     public class EmailSettingsConfig
     {
         [Required]
-        public string SmtpServer { get; set; } = "localhost";
+        public string SmtpServer { get; set; } = "smtp.gmail.com";
 
         [Required]
-        public string SmtpUser { get; set; } = "user";
+        public int SmtpPort { get; set; } = 587;   // ✅ fixed name
 
         [Required]
-        public string SmtpPassword { get; set; } = "pass";
+        public string SmtpUser { get; set; } = "";
 
-        public int Port { get; set; } = 587;
+        [Required]
+        public string SmtpPass { get; set; } = ""; // ✅ fixed name
+
         public bool EnableSsl { get; set; } = true;
-
-
-
     }
 }

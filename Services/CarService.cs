@@ -160,6 +160,10 @@ namespace CarsShop.Services
 }
 */
 
+
+
+/*
+
 using CarsShop.Db;
 using CarsShop.Interfeces.Db;
 using CarsShop.RequestsDto.CarsShop;
@@ -170,9 +174,11 @@ namespace CarsShop.Services
 {
     public class CarService : ICarService
     {
-        private readonly AppDbCar _context;
+        //private readonly AppDbCar _context;
+        private readonly AppDbContext _context;
 
-        public CarService(AppDbCar context)
+        //public CarService(AppDbCar context)
+        public CarService(AppDbContext context)
         {
             _context = context;
         }
@@ -244,3 +250,5 @@ namespace CarsShop.Services
         }
     }
 }
+
+*/

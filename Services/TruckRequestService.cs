@@ -1,4 +1,5 @@
-﻿using CarsShop.Db;
+﻿
+using CarsShop.Db;
 using CarsShop.Db.Models;
 using System.Threading.Tasks;
 
@@ -6,35 +7,40 @@ namespace CarsShop.Services
 {
     public interface ITruckRequestService
     {
-        Task<TruckRequestInfo> AddRequestAsync(TruckRequestInfo request);
+        Task<VehicleRequest> AddRequestAsync(VehicleRequest request);
     }
 
     public class TruckRequestService : ITruckRequestService
     {
-        private readonly AppDbRequestInfo _context;
+        private readonly AppDbContext _context;
         private readonly EmailService _emailService;
-
-        public TruckRequestService(AppDbRequestInfo context, EmailService emailService)
+       
+        public TruckRequestService(AppDbContext context, EmailService emailService)
         {
             _context = context;
             _emailService = emailService;
         }
-
-        public async Task<TruckRequestInfo> AddRequestAsync(TruckRequestInfo request)
+       
+        public async Task<VehicleRequest> AddRequestAsync(VehicleRequest request)
         {
             _context.TruckRequestInfos.Add(request);
             await _context.SaveChangesAsync();
 
             // Send email notification
+            
             await _emailService.SendEmail(
-                request.FirstName,
-                request.LastName,
-                request.Phone,
-                request.Email,
-                request.Details
+                request.User.FirstName,
+                request.User.LastName,
+                request.User.Phone,
+                request.User.Email,
+                request.Vehicle.Model,
+                request.Vehicle.Color,
+                request.Vehicle.Price,
+                request.Message
             );
 
             return request;
+            
         }
     }
 }

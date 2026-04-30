@@ -1,54 +1,106 @@
 ﻿using CarsShop.Configuration;
+using CarsShop.Db.Models;
+using CarsShop.Db;
 using MailKit.Net.Smtp;
 using MailKit.Security;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
-public class EmailService
+namespace CarsShop.Services
 {
-    private readonly EmailSettingsConfig _smptConfig;
-
-    public EmailService(IConfiguration config, IOptions<EmailSettingsConfig> SmptConfig)
+    public class EmailService
     {
-        _smptConfig = SmptConfig.Value;
-    }
+        private readonly EmailSettingsConfig _smtpConfig;
+        private readonly AppDbContext _context;
 
-    public async Task SendEmail(string firstName, string lastName, string phone, string email, string details)
-    {
-        var message = new MimeMessage();
-
-        var user = _smptConfig.SmtpUser;
-
-
-        message.From.Add(new MailboxAddress("Car Shop", user));
-        message.To.Add(new MailboxAddress("Admin", user));
-        message.Subject = "New Car Info Request";
-
-        message.Body = new TextPart("plain")
+        public EmailService(AppDbContext context, IOptions<EmailSettingsConfig> smtpConfig)
         {
-            Text =
-                $"First Name: {firstName}\n" +
-                $"Last Name: {lastName}\n" +
-                $"Phone: {phone}\n" +
-                $"Email: {email}\n" +
-                $"Details: {details}"
-        };
+            _context = context;
+            _smtpConfig = smtpConfig.Value;
+        }
 
-        using var client = new SmtpClient();
+        // ✅ MAIN ENTRY
+        public async Task SendFromRequest(VehicleRequest request)
+        {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
 
-        //await client.ConnectAsync(
-        //    _config["EmailSettings:SmtpServer"],
-        //    int.Parse(_config["EmailSettings:SmtpPort"]),
-        //    SecureSocketOptions.StartTls
-        //);
+            // ✔ LOAD USER + CAR FROM DB
+            //var user = await _context.Users.FindAsync(request.UserId);
+            //var car = await _context.Vehicles.FindAsync(request.CarId);
 
-        //await client.AuthenticateAsync(
-        //    user,
-        //    _config["EmailSettings:SmtpPass"]
-        //);
 
-        await client.SendAsync(message);
-        await client.DisconnectAsync(true);
+            var user = await _context.Users.FindAsync(1);
+            var car = await _context.Vehicles.FindAsync(1);
+
+            string firstName = user?.FirstName ?? "";
+            string lastName = user?.LastName ?? "";
+            string phone = user?.Phone ?? "";
+            string email = user?.Email ?? "";
+
+            string model = car?.Model ?? "";
+            string color = car?.Color ?? "";
+            decimal price = car?.Price ?? 0;
+
+            await SendEmail(
+                firstName,
+                lastName,
+                phone,
+                email,
+                model,
+                color,
+                price,
+                request.Message
+            );
+        }
+
+        // ✅ SMTP SENDER
+        public async Task SendEmail(
+            string firstName,
+            string lastName,
+            string phone,
+            string email,
+            string model,
+            string color,
+            decimal price,
+            string message)
+        {
+            var mimeMessage = new MimeMessage();
+
+            var senderEmail = _smtpConfig.SmtpUser;
+
+            mimeMessage.From.Add(new MailboxAddress("Car Shop", senderEmail));
+            mimeMessage.To.Add(new MailboxAddress("Admin", senderEmail));
+            mimeMessage.Subject = "New Car Info Request";
+
+            mimeMessage.Body = new TextPart("plain")
+            {
+                Text =
+                    $"First Name: {firstName}\n" +
+                    $"Last Name: {lastName}\n" +
+                    $"Phone: {phone}\n" +
+                    $"Email: {email}\n" +
+                    $"Model: {model}\n" +
+                    $"Color: {color}\n" +
+                    $"Price: {price}\n" +
+                    $"Details: {message}"
+            };
+
+            using var client = new SmtpClient();
+
+            await client.ConnectAsync(
+                _smtpConfig.SmtpServer,
+                _smtpConfig.SmtpPort,
+                SecureSocketOptions.StartTls
+            );
+
+            await client.AuthenticateAsync(
+                _smtpConfig.SmtpUser,
+                _smtpConfig.SmtpPass
+            );
+
+            await client.SendAsync(mimeMessage);
+            await client.DisconnectAsync(true);
+        }
     }
 }

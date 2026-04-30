@@ -1,4 +1,5 @@
-﻿using CarsShop.Db.Models;
+﻿/*
+using CarsShop.Db.Models;
 
 namespace CarsShop.Responses.TrucksShop
 {
@@ -16,7 +17,7 @@ namespace CarsShop.Responses.TrucksShop
 
         public string? Image { get; set; }
 
-        public static GetCarstResponse ConvertToResponseFromDbModel(Truck dbItem)
+        public static GetCarstResponse ConvertToResponseFromDbModel(Vehicle dbItem)
         {
             var item = new GetCarstResponse()
             {
@@ -32,3 +33,4 @@ namespace CarsShop.Responses.TrucksShop
         }
     }
 }
+*/

@@ -17,7 +17,7 @@ namespace CarsShop.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostRequest([FromBody] TruckRequestInfo request)
+        public async Task<IActionResult> PostRequest([FromBody] VehicleRequest request)
         {
             if (request == null)
                 return BadRequest("Request is null");

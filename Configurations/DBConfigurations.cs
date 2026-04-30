@@ -8,13 +8,22 @@ namespace CarsShop.Configurations
 
         public static void AddDbContextApp(this IServiceCollection service, IConfigurationManager configurationManager)
         {
-            service.AddDbContext<AppDbCar>(options =>
+            //service.AddDbContext<AppDbCar>(options =>
+    //options.UseSqlServer(configurationManager.GetConnectionString("CarsConnection")));
+
+            service.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(configurationManager.GetConnectionString("CarsConnection")));
 
-            service.AddDbContext<AppDbTruck>(options =>
+            //service.AddDbContext<AppDbTruck>(options =>
+            //  options.UseSqlServer(configurationManager.GetConnectionString("TrucksConnection")));
+
+            service.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configurationManager.GetConnectionString("TrucksConnection")));
 
-            service.AddDbContext<AppDbUser>(options =>
+
+           // service.AddDbContext<AppDbUser>(options =>
+             //   options.UseSqlServer(configurationManager.GetConnectionString("UsersConnection")));
+            service.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configurationManager.GetConnectionString("UsersConnection")));
         }
     }
