@@ -1,4 +1,4 @@
-﻿namespace CarsShop.RequestsDto.Login
+﻿namespace CarsShop.Dto.RequestsDto.Login
 {
     public class LoginDto
     {

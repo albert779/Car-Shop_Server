@@ -1,6 +1,6 @@
 ﻿using CarsShop.Db.Models;
 
-namespace CarsShop.RequestsDto.Vehicle.Item
+namespace CarsShop.Dto.RequestsDto.Vehicle.Item
 {
     public class VehicleItemUpdateDto
     {

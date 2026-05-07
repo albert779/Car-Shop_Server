@@ -1,87 +1,8 @@
-﻿/*
-using CarsShop.Db;
-using CarsShop.Db.Models;
-using CarsShop.Interfeces.Services;
-using CarsShop.RequestsDto;
-using CarsShop.Services;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
-
-
-namespace CarsShop.Api.Controllers
-{
-    [ApiController]
-    [Route("api/request")]
-    public class RequestInfoController : ControllerBase
-    {
-        private readonly IRequestSubmitterService _requestSubmitterService;
-        private readonly EmailService _emailService;
-        private readonly AppDbContext _context;
-
-        public RequestInfoController(
-            IRequestSubmitterService requestSubmitterService,
-            EmailService emailService,
-            AppDbContext db)
-        {
-            _requestSubmitterService = requestSubmitterService;
-            _emailService = emailService;
-        }
-
-        // POST: api/request
-        [HttpPost]
-        public async Task<IActionResult> CreateRequest([FromBody] CreateRequestDto dto)
-        {
-            if (dto == null)
-                return BadRequest("Invalid data");
-
-            try {
-                // ✅ Save to DB
-                await _requestSubmitterService.AddNew(dto);
-
-                // ✅ Send Email
-                await _emailService.SendEmail(
-                    dto.FirstName,
-                    dto.LastName,
-                    dto.Phone,
-                    dto.Email,
-                    dto.Model,
-                    dto.Color,
-                    dto.Price,
-                    dto.Details
-                );
-
-
-                /// call to email service
-                /// 
-                /// 
-
-
-                return Ok(new { message = "Request created and email sent" });
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("ERROR: " + ex.Message);
-                return StatusCode(500, "Internal server error");
-            }
-        }
-    }
-}
-*/
-
-
-
+﻿
 using CarsShop.Db;
 using CarsShop.Interfeces.Services;
-using CarsShop.RequestsDto;
-using CarsShop.Services;
 using CarsShop.Services.Auth;
-using Iced.Intel;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace CarsShop.Api.Controllers
 {

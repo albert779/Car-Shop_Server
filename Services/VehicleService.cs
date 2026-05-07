@@ -1,9 +1,9 @@
 ﻿
 using CarsShop.Db;
 using CarsShop.Db.Models;
+using CarsShop.Dto.RequestsDto.Vehicle.Item;
+using CarsShop.Dto.Responses.VehicleShop;
 using CarsShop.Interfeces.Db;
-using CarsShop.RequestsDto.Vehicle.Item;
-using CarsShop.Responses.CarsShop;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarsShop.Services

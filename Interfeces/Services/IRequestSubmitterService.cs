@@ -1,5 +1,4 @@
 ﻿using CarsShop.Db.Models;
-using CarsShop.RequestsDto;
 
 namespace CarsShop.Interfeces.Services
 {

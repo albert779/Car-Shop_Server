@@ -1,7 +1,7 @@
 ﻿using CarsShop.Db.Models;
 using System;
 
-namespace CarsShop.Responses.CarsShop
+namespace CarsShop.Dto.Responses.VehicleShop
 {
     public class GetVehicleResponse
     {

@@ -1,8 +1,6 @@
-﻿
+﻿using CarsShop.Db.Models;
 
-using CarsShop.Db.Models;
-
-namespace CarsShop.RequestsDto.Vehicle.Item
+namespace CarsShop.Dto.RequestsDto.Vehicle.Item
 {
     public class VehicleItemCreateDto
     {
@@ -14,11 +12,11 @@ namespace CarsShop.RequestsDto.Vehicle.Item
         public string? Details { get; set; }
         public string? Image { get; set; }
         public int VehicleTypeId { get; set; }
-        public static CarsShop.Db.Models.Vehicle ConvertToDbModel(VehicleItemCreateDto item)
+        public static Db.Models.Vehicle ConvertToDbModel(VehicleItemCreateDto item)
         {
             var type = new VehicleType() { Id = item.VehicleTypeId };
             var date = item.Date.ToDateTime(TimeOnly.MinValue);
-            var entety = new CarsShop.Db.Models.Vehicle()
+            var entety = new Db.Models.Vehicle()
             {
                 Color = item.Color,
                 Model = item.Model,

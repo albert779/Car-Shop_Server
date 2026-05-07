@@ -1,5 +1,5 @@
-﻿using CarsShop.RequestsDto.Vehicle.Item;
-using CarsShop.Responses.CarsShop;
+﻿using CarsShop.Dto.RequestsDto.Vehicle.Item;
+using CarsShop.Dto.Responses.VehicleShop;
 
 namespace CarsShop.Interfeces.Db
 {
@@ -11,12 +11,10 @@ namespace CarsShop.Interfeces.Db
 
         // Get all trucks as response DTOs
         Task<IEnumerable<GetVehicleResponse>> GetListAsync(string? search);
-        //Task<IEnumerable<GetVehicleResponse>> GetListAsync();
 
-        Task<GetVehicleResponse?> GetByIdAsync(int id);
+        Task<GetVehicleResponse> GetByIdAsync(int id);
 
         //Task<IEnumerable<GetVehicleResponse>> GetListAsync(string? search);
-
         Task<GetVehicleResponse?> UpdateAsync(int vehicleId, VehicleItemUpdateDto request);
     }
 }

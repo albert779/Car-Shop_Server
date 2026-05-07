@@ -1,6 +1,6 @@
-﻿namespace CarsShop.Responses.Auth
+﻿namespace CarsShop.Dto.Responses.Auth
 {
-    public class AuthResult
+    public class AuthResponse
     {
         // ✅ User info
         public string FirstName { get; set; } = string.Empty;
@@ -14,15 +14,15 @@
         public string Token { get;  set; } = string.Empty;
 
         // ✅ Factory method for error
-        public static AuthResult GetResponseWithError(string errorMessage)
+        public static AuthResponse GetResponseWithError(string errorMessage)
         {
-            return new AuthResult(false, string.Empty, errorMessage);
+            return new AuthResponse(false, string.Empty, errorMessage);
         }
 
         // ✅ Factory method for success with token
-        public static AuthResult GetResponseWithToken(string token, string firstName = "", string lastName = "", string email = "", string phone = "")
+        public static AuthResponse GetResponseWithToken(string token, string firstName = "", string lastName = "", string email = "", string phone = "")
         {
-            return new AuthResult(true, token, string.Empty)
+            return new AuthResponse(true, token, string.Empty)
             {
                 FirstName = firstName,
                 LastName = lastName,
@@ -32,11 +32,11 @@
         }
 
         // ✅ Private constructor
-        private AuthResult(bool success, string token, string message)
+        private AuthResponse(bool success, string token, string message)
         {
-            this.Success = success;
-            this.Token = token;
-            this.Message = message;
+            Success = success;
+            Token = token;
+            Message = message;
         }
     }
 }

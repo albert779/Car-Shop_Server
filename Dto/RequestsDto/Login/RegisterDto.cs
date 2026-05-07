@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Runtime.CompilerServices;
 
-namespace CarsShop.RequestsDto.Login
+namespace CarsShop.Dto.RequestsDto.Login
 {
     public class RegisterDto
     {

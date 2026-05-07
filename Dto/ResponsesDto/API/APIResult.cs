@@ -1,16 +1,14 @@
-﻿namespace CarsShop.Responses.API
+﻿namespace CarsShop.Dto.Responses.API
 {
-    public abstract class APIResponse
+    public abstract class APIResult
     {
         public bool Success { get; }
-        protected APIResponse(bool success)
+        protected APIResult(bool success)
             
         {
             Success = success;    
         }
 
     }
-
-
 
 }

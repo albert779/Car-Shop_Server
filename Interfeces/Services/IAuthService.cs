@@ -1,5 +1,5 @@
-﻿using CarsShop.RequestsDto.Login;
-using CarsShop.Responses.Auth;
+﻿using CarsShop.Dto.RequestsDto.Login;
+using CarsShop.Dto.Responses.Auth;
 
 namespace CarsShop.Services.Auth
 {

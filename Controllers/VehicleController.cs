@@ -1,7 +1,7 @@
-﻿using CarsShop.Interfeces.Db;
-using CarsShop.RequestsDto.Vehicle.Item;
-using CarsShop.Responses.API;
-using CarsShop.Responses.CarsShop;
+﻿using CarsShop.Dto.RequestsDto.Vehicle.Item;
+using CarsShop.Dto.Responses.API;
+using CarsShop.Dto.Responses.VehicleShop;
+using CarsShop.Interfeces.Db;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,9 +26,13 @@ namespace CarsShop.Controllers
             var vehicles = await _vehicleService.GetListAsync(type);
 
             if (!vehicles.Any())
-                return NotFound(APIResponseWithError.Create("No vehicles found"));
+            {
+                var error = APIResponse.CreateBadWithMessage<string>("No vehicles found");
+                return NotFound(error);
+            }
 
-            return Ok(APIResponseWithData<IEnumerable<GetVehicleResponse>>.Create(vehicles));
+            var response = APIResponse.CreateOKWithData(vehicles);
+            return Ok(response);
         }
         // =========================
         // GET BY ID
@@ -39,28 +43,32 @@ namespace CarsShop.Controllers
             var vehicle = await _vehicleService.GetByIdAsync(id);
 
             if (vehicle == null)
-                return NotFound(APIResponseWithError.Create($"Vehicle with id {id} not found"));
+            {
+                var error = APIResponse.CreateBadWithMessage("Vehicle with id {id} not found");
+                return NotFound(error);
 
-            return Ok(
-                APIResponseWithData<GetVehicleResponse>.Create(vehicle)
-            );
+            }
+            return APIResponse.CreateOKWithData<GetVehicleResponse>(vehicle);
         }
 
         // =========================
         // CREATE
         // =========================
         [HttpPost]
-        public async Task<ActionResult<APIResponse>> Create([FromBody] VehicleItemCreateDto dto)
+        public async Task<ActionResult<APIResult>> Create([FromBody] VehicleItemCreateDto dto)
         {
             if (!ModelState.IsValid)
-                return BadRequest(APIResponseWithError.Create("Invalid vehicle data"));
+            {
+                var error = APIResponse.CreateBadWithMessage("Invalid vehicle data");
+                return BadRequest(error);
+            }
 
             var created = await _vehicleService.AddAsync(dto);
 
             return CreatedAtAction(
                 nameof(GetById),
                 new { id = created.Id },
-                APIResponseWithData<GetVehicleResponse>.Create(created)
+                APIResponse.CreateOKWithData(created)
             );
         }
 
@@ -68,28 +76,36 @@ namespace CarsShop.Controllers
         // UPDATE
         // =========================
         [HttpPut("{id}")]
-        public async Task<ActionResult<APIResponse>> Update(int id, [FromBody] VehicleItemUpdateDto request)
+        public async Task<ActionResult<APIResult>> Update(int id, [FromBody] VehicleItemUpdateDto request)
         {
             var updated = await _vehicleService.UpdateAsync(id, request);
 
             if (updated == null)
-                return NotFound(APIResponseWithError.Create($"Vehicle with id {id} not found"));
+            {
+                var error = APIResponse.CreateBadWithMessage<string>("Vehicle with id {id} not found");
+                return NotFound(error);
+            }
+            var response = APIResponse.CreateOKWithData<int>(id);
 
-            return Ok(APIResponseWithData<int>.Create(id));
+            return Ok(response);
         }
 
         // =========================
         // DELETE
         // =========================
         [HttpDelete("{id}")]
-        public async Task<ActionResult<APIResponse>> Delete(int id)
+        public async Task<ActionResult<APIResult>> Delete(int id)
         {
             var deleted = await _vehicleService.DeleteAsync(id);
 
             if (!deleted)
-                return NotFound(APIResponseWithError.Create($"Vehicle with id {id} not found"));
+            {
+                var error = APIResponse.CreateBadWithMessage<string>($"Vehicle with id ${id} not found");
+                return NotFound(error);
+            }
 
-            return Ok(APIResponseWithData<int>.Create(id));
+            var response = APIResponse.CreateOK();
+            return Ok(response);
         }
     }
 }
