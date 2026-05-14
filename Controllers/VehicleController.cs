@@ -4,6 +4,7 @@ using CarsShop.Dto.Responses.VehicleShop;
 using CarsShop.Interfeces.Db;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace CarsShop.Controllers
@@ -105,6 +106,20 @@ namespace CarsShop.Controllers
             }
 
             var response = APIResponse.CreateOK();
+            return Ok(response);
+        }
+
+
+        [HttpGet("search")]
+        public async Task<ActionResult<APIResponse>> Search(
+                   [FromQuery] string? text)
+        {
+            var vehicles =
+                await _vehicleService.SearchAsync(text);
+
+            var response =
+                APIResponse.CreateOKWithData(vehicles);
+
             return Ok(response);
         }
     }

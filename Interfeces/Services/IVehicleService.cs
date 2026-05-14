@@ -16,5 +16,6 @@ namespace CarsShop.Interfeces.Db
 
         //Task<IEnumerable<GetVehicleResponse>> GetListAsync(string? search);
         Task<GetVehicleResponse?> UpdateAsync(int vehicleId, VehicleItemUpdateDto request);
+        Task<List<GetVehicleResponse>> SearchAsync(string? text);
     }
 }

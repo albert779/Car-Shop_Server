@@ -108,6 +108,7 @@ namespace CarsShop.Services
                     Price = v.Price,
                     Image = v.Image,
                     Date = DateOnly.FromDateTime(v.Date),
+                    Details = v.Details,
                     VehicleType = v.VehicleType.Name
                 })
                 .ToListAsync();
@@ -126,6 +127,32 @@ namespace CarsShop.Services
 
             await _context.SaveChangesAsync();
             return GetVehicleResponse.ConvertToResponseFromDbModel(entity);
+        }
+
+        public async Task<List<GetVehicleResponse>> SearchAsync(string? text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return new List<GetVehicleResponse>();
+
+            var query = _context.Vehicles.AsQueryable();
+
+            query = query.Where(v =>
+                (v.Model != null && v.Model.Contains(text)) ||
+                (v.Color != null && v.Color.Contains(text)) ||
+                (v.Price != null && v.Price.ToString().Contains(text))||
+                (v.Details != null && v.Details.Contains(text))
+            );
+
+            return await query.Select(v => new GetVehicleResponse
+            {
+                Id = v.Id,
+                Model = v.Model,
+                Color = v.Color,
+                Price = v.Price,
+                Image = v.Image,
+                Date = DateOnly.FromDateTime(v.Date),
+                Details = v.Details
+            }).ToListAsync();
         }
     }
 }

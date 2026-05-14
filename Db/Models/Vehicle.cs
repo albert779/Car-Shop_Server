@@ -12,6 +12,9 @@ namespace CarsShop.Db.Models
         public string? Details { get; set; }
         public string? Image { get; set; }
         public decimal Price { get; set; }
-        public required VehicleType VehicleType { get; set; }
+        public VehicleType VehicleType { get; set; }
+        public int VehicleTypeId { get; set; }
+
+
     }
 }

@@ -12,9 +12,11 @@ namespace CarsShop.Dto.RequestsDto.Vehicle.Item
         public string? Details { get; set; }
         public string? Image { get; set; }
         public int VehicleTypeId { get; set; }
+        
+
         public static Db.Models.Vehicle ConvertToDbModel(VehicleItemCreateDto item)
         {
-            var type = new VehicleType() { Id = item.VehicleTypeId };
+           // var type = new VehicleType() { Id = item.VehicleTypeId };
             var date = item.Date.ToDateTime(TimeOnly.MinValue);
             var entety = new Db.Models.Vehicle()
             {
@@ -24,7 +26,9 @@ namespace CarsShop.Dto.RequestsDto.Vehicle.Item
                 Price = item.Price,
                 Details = item.Details,
                 Image = item.Image,
-                VehicleType = type,
+                // VehicleType = type,
+
+                VehicleTypeId = item.VehicleTypeId
 
             };
             return entety;
