@@ -4,6 +4,9 @@
     {
         public int Id { get; set; }
         public Vehicle Vehicle { get; set; }
+
+        public int VehicleId { get; set; }
+        public int UserId { get; set; }
         public string Message { get; set; } = string.Empty;
         public User User { get; set; }
         public DateTime CreatedAt { get; set; }

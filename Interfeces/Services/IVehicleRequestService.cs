@@ -1,10 +1,13 @@
-﻿using CarsShop.Dto.RequestsDto.Vehicle.Item;
+﻿using CarsShop.Db.Models;
+using CarsShop.Dto.RequestsDto.Vehicle.Item;
 using CarsShop.Dto.Responses.VehicleShop;
 
 namespace CarsShop.Interfeces.Db
 {
-    public interface IVehicleService
+    public interface IVehicleRequestService
     {
+
+        Task<VehicleRequest> CreateAsync(VehicleRequestCreateDto dto, int userId);
         Task<GetVehicleResponse> AddAsync(VehicleItemCreateDto request);
 
         Task<bool> DeleteAsync(int id);

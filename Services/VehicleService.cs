@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CarsShop.Services
 {
 
-    public class VehicleService : IVehicleService
+    public class VehicleService : IVehicleRequestService
     {
         //private readonly AppDbCar _context;
         private readonly AppDbContext _context;
@@ -153,6 +153,30 @@ namespace CarsShop.Services
                 Date = DateOnly.FromDateTime(v.Date),
                 Details = v.Details
             }).ToListAsync();
+        }
+
+
+
+        public async Task<VehicleRequest> CreateAsync(VehicleRequestCreateDto dto, int userId)
+        {
+            var currentDateTime = DateTime.UtcNow;
+            var entity = new VehicleRequest
+            {
+                Id = dto.CarId,
+                UserId = userId,
+                CreatedAt = currentDateTime,
+                LastUpdate = currentDateTime,
+                Status = new RequestStatus
+                {
+                    Id = 1,
+                    DisplayName = "Pending"
+                }
+            };
+
+            _context.VehicleRequests.Add(entity);
+            await _context.SaveChangesAsync();
+
+            return entity;
         }
     }
 }

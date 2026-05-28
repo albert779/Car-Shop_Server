@@ -14,13 +14,15 @@ namespace CarsShop.Controllers
     [Route("api/[controller]")]
     public class VehicleController : ControllerBase
     {
-        private readonly IVehicleService _vehicleService;
+        private readonly IVehicleRequestService _vehicleService;
 
-        public VehicleController(IVehicleService vehicleService)
+        public VehicleController(IVehicleRequestService vehicleService)
         {
             _vehicleService = vehicleService;
         }
 
+
+        /*
         [HttpGet]
         public async Task<ActionResult<APIResponse>> GetAll([FromQuery] string? type)
         {
@@ -50,6 +52,47 @@ namespace CarsShop.Controllers
 
             }
             return APIResponse.CreateOKWithData<GetVehicleResponse>(vehicle);
+        }
+        */
+
+        [HttpGet]
+        public async Task<ActionResult<APIResponse>> GetAll([FromQuery] string? type)
+        {
+            var vehicles = await _vehicleService.GetListAsync(type);
+
+            // ✅ Return empty list instead of 404
+            if (vehicles == null)
+            {
+                vehicles = new List<GetVehicleResponse>();
+            }
+
+            var response = APIResponse.CreateOKWithData(vehicles);
+
+            return Ok(response);
+        }
+
+        // =========================
+        // GET BY ID
+        // =========================
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<APIResponse>> GetById(int id)
+        {
+            var vehicle = await _vehicleService.GetByIdAsync(id);
+
+            if (vehicle == null)
+            {
+                var error =
+                    APIResponse.CreateBadWithMessage(
+                        $"Vehicle with id {id} not found"
+                    );
+
+                return NotFound(error);
+            }
+
+            return Ok(
+                APIResponse.CreateOKWithData<GetVehicleResponse>(vehicle)
+            );
         }
 
         // =========================

@@ -69,7 +69,8 @@ namespace CarsShop.Services.Auth
             if (result == PasswordVerificationResult.Failed)
                 return AuthResponse.GetResponseWithError(ErrorEmailOrPasswordWrong);
 
-            string token = GenerateJwt(user);
+            var claims = GetUserClaims(user);
+            string token = GenerateJwt(claims);
 
             return AuthResponse.GetResponseWithToken(
                 token,
@@ -79,12 +80,11 @@ namespace CarsShop.Services.Auth
                 user.Phone
             );
         }
-        private string GenerateJwt(User user)
+        private string GenerateJwt(IEnumerable<Claim> claims)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            IEnumerable<Claim> claims = GetUserClaims(user);
-
+            //IEnumerable<Claim> claims = GetUserClaims(user);
             string token = _jwtService.GenerateJwt(claims, creds);
             return token;
         }

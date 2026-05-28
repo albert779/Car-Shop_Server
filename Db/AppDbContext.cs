@@ -5,6 +5,7 @@ namespace CarsShop.Db
 {
     public class AppDbContext : DbContext
     {
+        public DbSet<VehicleRequest> VehicleRequests { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
