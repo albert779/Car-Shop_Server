@@ -14,9 +14,9 @@ namespace CarsShop.Controllers
     [Route("api/[controller]")]
     public class VehicleController : ControllerBase
     {
-        private readonly IVehicleRequestService _vehicleService;
+        private readonly IVehicleService _vehicleService;
 
-        public VehicleController(IVehicleRequestService vehicleService)
+        public VehicleController(IVehicleService vehicleService)
         {
             _vehicleService = vehicleService;
         }

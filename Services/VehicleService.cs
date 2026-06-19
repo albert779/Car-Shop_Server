@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CarsShop.Services
 {
 
-    public class VehicleService : IVehicleRequestService
+    public class VehicleService : IVehicleService
     {
         //private readonly AppDbCar _context;
         private readonly AppDbContext _context;

@@ -78,7 +78,7 @@ builder.Services.AddCors(options =>
 
 // ================= Scoped services =================
 builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IVehicleRequestService, VehicleService>();
+builder.Services.AddScoped<IVehicleService, VehicleService>();
 //builder.Services.AddScoped<IVehicleService, VehicleService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<LoggingMiddleware>();

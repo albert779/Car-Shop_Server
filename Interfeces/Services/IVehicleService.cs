@@ -4,7 +4,7 @@ using CarsShop.Dto.Responses.VehicleShop;
 
 namespace CarsShop.Interfeces.Db
 {
-    public interface IVehicleRequestService
+    public interface IVehicleService
     {
 
         //Task<VehicleRequest> CreateAsync(VehicleRequestCreateDto dto, int userId);
