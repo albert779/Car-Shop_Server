@@ -82,7 +82,7 @@ builder.Services.AddScoped<IVehicleRequestService, VehicleService>();
 //builder.Services.AddScoped<IVehicleService, VehicleService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<LoggingMiddleware>();
-//builder.Services.AddScoped<EmailService>();
+builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<IRequestSubmitterService, RequestSubmitterService>();
 //builder.Services.AddScoped<IVehicleService, VehicleService>();
 

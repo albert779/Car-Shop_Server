@@ -13,11 +13,13 @@ namespace CarsShop.Services
     {
         //private readonly AppDbCar _context;
         private readonly AppDbContext _context;
+        private readonly EmailService _emailService;
 
         //public CarService(AppDbCar context)
-        public VehicleService(AppDbContext context)
+        public VehicleService(AppDbContext context, EmailService emailService)
         {
             _context = context;
+            _emailService = emailService;
         }
 
         public async Task<GetVehicleResponse> AddAsync(VehicleItemCreateDto request)
@@ -157,27 +159,31 @@ namespace CarsShop.Services
 
 
 
-        public async Task<VehicleRequest> CreateAsync(VehicleRequestCreateDto dto, int userId)
-        {
-            var currentDateTime = DateTime.UtcNow;
-            var entity = new VehicleRequest
-            {
-                Id = dto.CarId,
-                UserId = userId,
-                CreatedAt = currentDateTime,
-                LastUpdate = currentDateTime,
-                Status = new RequestStatus
-                {
-                    Id = 1,
-                    DisplayName = "Pending"
-                }
-            };
+        //public async Task<VehicleRequest> CreateAsync(VehicleRequestCreateDto dto, int userId)
+        //{
+        //    var currentDateTime = DateTime.UtcNow;
+        //    var entity = new VehicleRequest
+        //    {
+        //        //Id = dto.CarId,
+        //        VehicleId = dto.CarId,
+        //        UserId = userId,
+        //        CreatedAt = currentDateTime,
+        //        LastUpdate = currentDateTime,
+        //        Message = dto.Message,
+        //        Status = new RequestStatus
+        //        {
+        //           // Id = 1,
+        //            Name = "Pending"
+        //        }
+        //    };
 
-            _context.VehicleRequests.Add(entity);
-            await _context.SaveChangesAsync();
+        //    _context.VehicleRequest.Add(entity);
+        //    await _context.SaveChangesAsync();
 
-            return entity;
-        }
+        //    await _emailService.SendFromRequest(entity);
+
+        //    return entity;
+        //}
     }
 }
 

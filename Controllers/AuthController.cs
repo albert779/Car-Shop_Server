@@ -34,7 +34,8 @@ namespace IDGCoreWebAPI.Controllers
             if (!result)
                 return BadRequest("Email already exists");
 
-            return Ok("User registered successfully");
+            //return Ok("User registered successfully");
+            return Ok(APIResponse.CreateOKWithData("User registered successfully"));
         }
 
 

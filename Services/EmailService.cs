@@ -1,4 +1,5 @@
-﻿using CarsShop.Configuration;
+﻿
+using CarsShop.Configuration;
 using CarsShop.Db.Models;
 using CarsShop.Db;
 using MailKit.Net.Smtp;
@@ -19,42 +20,34 @@ namespace CarsShop.Services
             _smtpConfig = smtpConfig.Value;
         }
 
-        // ✅ MAIN ENTRY
+        // MAIN ENTRY
         public async Task SendFromRequest(VehicleRequest request)
         {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
 
-            // ✔ LOAD USER + CAR FROM DB
-            //var user = await _context.Users.FindAsync(request.UserId);
-            //var car = await _context.Vehicles.FindAsync(request.CarId);
+            var user = await _context.Users.FindAsync(request.UserId);
+            var car = await _context.Vehicles.FindAsync(request.VehicleId);
 
+            if (user == null)
+                throw new Exception($"User not found: {request.UserId}");
 
-            var user = await _context.Users.FindAsync(1);
-            var car = await _context.Vehicles.FindAsync(1);
-
-            string firstName = user?.FirstName ?? "";
-            string lastName = user?.LastName ?? "";
-            string phone = user?.Phone ?? "";
-            string email = user?.Email ?? "";
-
-            string model = car?.Model ?? "";
-            string color = car?.Color ?? "";
-            decimal price = car?.Price ?? 0;
+            if (car == null)
+                throw new Exception($"Vehicle not found: {request.VehicleId}");
 
             await SendEmail(
-                firstName,
-                lastName,
-                phone,
-                email,
-                model,
-                color,
-                price,
+                user.FirstName,
+                user.LastName,
+                user.Phone,
+                user.Email,
+                car.Model,
+                car.Color,
+                car.Price,
                 request.Message
             );
         }
 
-        // ✅ SMTP SENDER
+        // SMTP SENDER
         public async Task SendEmail(
             string firstName,
             string lastName,
@@ -67,11 +60,9 @@ namespace CarsShop.Services
         {
             var mimeMessage = new MimeMessage();
 
-            var senderEmail = _smtpConfig.SmtpUser;
-
-            mimeMessage.From.Add(new MailboxAddress("Car Shop", senderEmail));
-            mimeMessage.To.Add(new MailboxAddress("Admin", senderEmail));
-            mimeMessage.Subject = "New Car Info Request";
+            mimeMessage.From.Add(new MailboxAddress("Car Shop", _smtpConfig.SmtpUser));
+            mimeMessage.To.Add(new MailboxAddress("Admin", _smtpConfig.SmtpUser));
+            mimeMessage.Subject = "New Vehicle Request";
 
             mimeMessage.Body = new TextPart("plain")
             {
@@ -83,7 +74,7 @@ namespace CarsShop.Services
                     $"Model: {model}\n" +
                     $"Color: {color}\n" +
                     $"Price: {price}\n" +
-                    $"Details: {message}"
+                    $"Message: {message}"
             };
 
             using var client = new SmtpClient();
@@ -95,8 +86,10 @@ namespace CarsShop.Services
             );
 
             await client.AuthenticateAsync(
-                _smtpConfig.SmtpUser,
-                _smtpConfig.SmtpPass
+               //  _smtpConfig.SmtpUser,
+               //  _smtpConfig.SmtpPass
+               "alberteliav434@gmail.com",
+                "rwtq mkdj tbea duer"
             );
 
             await client.SendAsync(mimeMessage);

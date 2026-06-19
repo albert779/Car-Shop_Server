@@ -6,13 +6,13 @@ namespace CarsShop.Dto.RequestsDto.Login
 {
     public class RegisterDto
     {
-        public int Id { get; set; } 
+        //public int Id { get; set; } 
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public DateOnly BirthDate { get; set; }
-        
+        public string BirthDate { get; set; }
+
         public string Phone { get; set; }
         public int RoleId { get; set; } = 2;
 
@@ -20,14 +20,15 @@ namespace CarsShop.Dto.RequestsDto.Login
         {
             var model = new User()
             {
-                BirthDate = BirthDate,
+                BirthDate = DateOnly.Parse(BirthDate),
                 CreationDate = DateOnly.FromDateTime(DateTime.Now),
                 Email = Email,
                 LastName = LastName,
                 FirstName = FirstName,
-                Id = Id,
+                //Id = Id,
                 Phone = Phone,
                 Password = string.Empty,
+                //Password = Password,
                 RoleId = RoleId
                     
 

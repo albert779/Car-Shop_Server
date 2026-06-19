@@ -2,7 +2,7 @@
 
 namespace CarsShop.Db.Models
 {
-    [Table("Register")]
+    //[Table("Register")]
     public class User
     {
         public int Id { get; set; }

@@ -43,7 +43,7 @@ namespace CarsShop.Services.Auth
             var dbUser = request.ConvertToDbModel();
             dbUser.Password = _hasher.HashPassword(dbUser, request.Password);
 
-            _db.Add(dbUser);
+            _db.Users.Add(dbUser);
             try
             {
                 await _db.SaveChangesAsync();

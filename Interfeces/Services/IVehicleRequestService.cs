@@ -7,7 +7,7 @@ namespace CarsShop.Interfeces.Db
     public interface IVehicleRequestService
     {
 
-        Task<VehicleRequest> CreateAsync(VehicleRequestCreateDto dto, int userId);
+        //Task<VehicleRequest> CreateAsync(VehicleRequestCreateDto dto, int userId);
         Task<GetVehicleResponse> AddAsync(VehicleItemCreateDto request);
 
         Task<bool> DeleteAsync(int id);
