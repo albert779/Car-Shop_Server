@@ -4,6 +4,7 @@ using CarsShop.Db.Models;
 using CarsShop.Dto.RequestsDto.Vehicle.Item;
 using CarsShop.Dto.Responses.VehicleShop;
 using CarsShop.Interfeces.Db;
+using CarsShop.Interfeces.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarsShop.Services
@@ -13,10 +14,10 @@ namespace CarsShop.Services
     {
         //private readonly AppDbCar _context;
         private readonly AppDbContext _context;
-        private readonly EmailService _emailService;
+        private readonly IEmailService _emailService;
 
         //public CarService(AppDbCar context)
-        public VehicleService(AppDbContext context, EmailService emailService)
+        public VehicleService(AppDbContext context, IEmailService emailService)
         {
             _context = context;
             _emailService = emailService;
@@ -141,7 +142,7 @@ namespace CarsShop.Services
             query = query.Where(v =>
                 (v.Model != null && v.Model.Contains(text)) ||
                 (v.Color != null && v.Color.Contains(text)) ||
-                (v.Price != null && v.Price.ToString().Contains(text))||
+                (v.Price != null && v.Price.ToString().Contains(text)) ||
                 (v.Details != null && v.Details.Contains(text))
             );
 
@@ -157,33 +158,6 @@ namespace CarsShop.Services
             }).ToListAsync();
         }
 
-
-
-        //public async Task<VehicleRequest> CreateAsync(VehicleRequestCreateDto dto, int userId)
-        //{
-        //    var currentDateTime = DateTime.UtcNow;
-        //    var entity = new VehicleRequest
-        //    {
-        //        //Id = dto.CarId,
-        //        VehicleId = dto.CarId,
-        //        UserId = userId,
-        //        CreatedAt = currentDateTime,
-        //        LastUpdate = currentDateTime,
-        //        Message = dto.Message,
-        //        Status = new RequestStatus
-        //        {
-        //           // Id = 1,
-        //            Name = "Pending"
-        //        }
-        //    };
-
-        //    _context.VehicleRequest.Add(entity);
-        //    await _context.SaveChangesAsync();
-
-        //    await _emailService.SendFromRequest(entity);
-
-        //    return entity;
-        //}
     }
 }
 

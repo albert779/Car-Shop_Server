@@ -1,99 +1,45 @@
 ﻿
 using CarsShop.Configuration;
-using CarsShop.Db.Models;
 using CarsShop.Db;
+using CarsShop.Db.Models;
+using CarsShop.Interfeces.Services;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using System.Drawing;
+using System.Numerics;
 
 namespace CarsShop.Services
 {
-    public class EmailService
+    public class EmailService : IEmailService
     {
-        private readonly EmailSettingsConfig _smtpConfig;
-        private readonly AppDbContext _context;
-
-        public EmailService(AppDbContext context, IOptions<EmailSettingsConfig> smtpConfig)
+        public EmailService()
         {
-            _context = context;
-            _smtpConfig = smtpConfig.Value;
         }
 
-        // MAIN ENTRY
-        public async Task SendFromRequest(VehicleRequest request)
+        public async Task<string> SendRequest(MailboxAddress From, IEnumerable<MailboxAddress> to, MimeEntity body, string subject, EmailSettingsConfig smtpConfig)
         {
-            if (request == null)
-                throw new ArgumentNullException(nameof(request));
 
-            var user = await _context.Users.FindAsync(request.UserId);
-            var car = await _context.Vehicles.FindAsync(request.VehicleId);
-
-            if (user == null)
-                throw new Exception($"User not found: {request.UserId}");
-
-            if (car == null)
-                throw new Exception($"Vehicle not found: {request.VehicleId}");
-
-            await SendEmail(
-                user.FirstName,
-                user.LastName,
-                user.Phone,
-                user.Email,
-                car.Model,
-                car.Color,
-                car.Price,
-                request.Message
-            );
-        }
-
-        // SMTP SENDER
-        public async Task SendEmail(
-            string firstName,
-            string lastName,
-            string phone,
-            string email,
-            string model,
-            string color,
-            decimal price,
-            string message)
-        {
-            var mimeMessage = new MimeMessage();
-
-            mimeMessage.From.Add(new MailboxAddress("Car Shop", _smtpConfig.SmtpUser));
-            mimeMessage.To.Add(new MailboxAddress("Admin", _smtpConfig.SmtpUser));
-            mimeMessage.Subject = "New Vehicle Request";
-
-            mimeMessage.Body = new TextPart("plain")
-            {
-                Text =
-                    $"First Name: {firstName}\n" +
-                    $"Last Name: {lastName}\n" +
-                    $"Phone: {phone}\n" +
-                    $"Email: {email}\n" +
-                    $"Model: {model}\n" +
-                    $"Color: {color}\n" +
-                    $"Price: {price}\n" +
-                    $"Message: {message}"
-            };
+            var payload = BuildPayload(From, to, subject, body);
 
             using var client = new SmtpClient();
+            await client.ConnectAsync(smtpConfig.SmtpServer, smtpConfig.SmtpPort, SecureSocketOptions.StartTls);
+            await client.AuthenticateAsync(smtpConfig.SmtpUser, smtpConfig.SmtpPass);
+            var response = await client.SendAsync(payload);
+            return response;
+        }
 
-            await client.ConnectAsync(
-                _smtpConfig.SmtpServer,
-                _smtpConfig.SmtpPort,
-                SecureSocketOptions.StartTls
-            );
 
-            await client.AuthenticateAsync(
-               //  _smtpConfig.SmtpUser,
-               //  _smtpConfig.SmtpPass
-               "alberteliav434@gmail.com",
-                "rwtq mkdj tbea duer"
-            );
+        private MimeMessage BuildPayload(MailboxAddress From, IEnumerable<MailboxAddress> to, string subject, MimeEntity body)
+        {
+            var payload = new MimeMessage();
 
-            await client.SendAsync(mimeMessage);
-            await client.DisconnectAsync(true);
+            payload.From.Add(From);
+            payload.To.AddRange(to);
+            payload.Subject = subject;
+            payload.Body = body;
+            return payload;
         }
     }
 }

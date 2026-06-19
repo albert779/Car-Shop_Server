@@ -79,12 +79,11 @@ builder.Services.AddCors(options =>
 // ================= Scoped services =================
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
-//builder.Services.AddScoped<IVehicleService, VehicleService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<LoggingMiddleware>();
-builder.Services.AddScoped<EmailService>();
-builder.Services.AddScoped<IRequestSubmitterService, RequestSubmitterService>();
-//builder.Services.AddScoped<IVehicleService, VehicleService>();
+builder.Services.AddSingleton<IEmailService, EmailService>();
+builder.Services.AddScoped<IVehicleRequestService, VehicleRequestService>();
+
 
 // ================= Authentication =================
 var jwtInfo = builder.Configuration.GetSection("JWTInfo").Get<JWTInfo>();
