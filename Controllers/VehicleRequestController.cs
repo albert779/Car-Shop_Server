@@ -22,7 +22,7 @@ namespace CarsShop.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(VehicleRequestCreateDto dto)
+        public async Task<IActionResult> Create([FromBody] VehicleRequestCreateDto dto)
         {
             var userClaim = this.User.Claims
                 .FirstOrDefault(x => x.Type == AuthService.ClaimIdKey);

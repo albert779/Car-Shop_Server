@@ -38,6 +38,23 @@ namespace CarsShop.Services
             var vehicle = await _context.Vehicles.SingleAsync(vehicle => vehicle.Id == request.CarId);
             var body = BuildBody(user, vehicle, request.Message);
 
+            
+            // ✅ 1. CREATE DB ENTITY
+            var entity = new VehicleRequest
+            {
+                VehicleId = request.CarId,
+                UserId = userIdRequested,
+                Message = request.Message,
+                CreatedAt = DateTime.UtcNow,
+
+                // ⭐ STATUS ADDED HERE
+                RequestStatusId = (int)RequestStatusEnum.Pending
+            };
+
+            // ✅ 2. SAVE TO DATABASE
+            _context.VehicleRequests.Add(entity);
+            await _context.SaveChangesAsync();
+
             await _emailService.SendRequest(from, to, body, _subjectEmail, _emailSettingsConfig);
 
             // misisng save in DB on the status

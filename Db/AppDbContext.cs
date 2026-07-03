@@ -17,7 +17,8 @@ namespace CarsShop.Db
         public DbSet<VehicleType> VehicleTypes { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<User> Users { get; set; }
-        
+        //public object VehicleRequests { get; internal set; }
+        public DbSet<VehicleRequest> VehicleRequests { get; set; }
 
         // ✅ MUST be inside the class
         protected override void OnModelCreating(ModelBuilder modelBuilder)
