@@ -13,6 +13,8 @@
         public string Message { get;  set; } = string.Empty;
         public string Token { get;  set; } = string.Empty;
 
+        public int RoleId { get; set; }
+
         // ✅ Factory method for error
         public static AuthResponse GetResponseWithError(string errorMessage)
         {
@@ -20,10 +22,11 @@
         }
 
         // ✅ Factory method for success with token
-        public static AuthResponse GetResponseWithToken(string token, string firstName = "", string lastName = "", string email = "", string phone = "")
+        public static AuthResponse GetResponseWithToken( string token, string firstName = "", string lastName = "", string email = "", string phone = "")
         {
             return new AuthResponse(true, token, string.Empty)
             {
+                //RoleId=roleId,
                 FirstName = firstName,
                 LastName = lastName,
                 Email = email,

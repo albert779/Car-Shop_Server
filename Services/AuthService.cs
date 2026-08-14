@@ -78,6 +78,7 @@ namespace CarsShop.Services.Auth
                 user.LastName,
                 user.Email,
                 user.Phone
+                
             );
         }
         private string GenerateJwt(IEnumerable<Claim> claims)
@@ -96,7 +97,10 @@ namespace CarsShop.Services.Auth
                 new Claim("FirstName", user.FirstName),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(AuthService.ClaimIdKey, user.Id.ToString()),
-                new Claim("roleId", user.RoleId.ToString())
+                //new Claim("roleId", user.RoleId.ToString())
+                new Claim(ClaimTypes.Role,
+user.RoleId == 1 ? "Manager" : "User"
+        )
             };
         }
     }

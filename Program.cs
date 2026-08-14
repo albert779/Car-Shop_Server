@@ -83,7 +83,7 @@ builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<LoggingMiddleware>();
 builder.Services.AddSingleton<IEmailService, EmailService>();
 builder.Services.AddScoped<IVehicleRequestService, VehicleRequestService>();
-
+builder.Services.AddScoped<ITableOfRequests, RequestService>();
 
 // ================= Authentication =================
 var jwtInfo = builder.Configuration.GetSection("JWTInfo").Get<JWTInfo>();

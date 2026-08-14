@@ -9,13 +9,13 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "CarsShop.RequestsDto.Login.LoginDto",
+        "Type": "CarsShop.Dto.RequestsDto.Login.LoginDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "CarsShop.Responses.API.APIResponse",
+        "Type": "CarsShop.Dto.Responses.API.APIResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -35,16 +35,67 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "CarsShop.RequestsDto.Login.RegisterDto",
+        "Type": "CarsShop.Dto.RequestsDto.Login.RegisterDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "CarsShop.Controllers.CarsController",
-    "Method": "GetAll",
-    "RelativePath": "api/Cars",
+    "ContainingType": "CarsShop.Controllers.DashboardController",
+    "Method": "Dashboard",
+    "RelativePath": "api/Dashboard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CarsShop.Controllers.RequestFilterController",
+    "Method": "GetRequests",
+    "RelativePath": "api/RequestFilter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "StatusId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "FromDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ToDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CarsShop.Controllers.TableOfRequestsController",
+    "Method": "GetRequests",
+    "RelativePath": "api/TableOfRequests",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -55,138 +106,25 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "CarsShop.Responses.API.APIResponse",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "CarsShop.Controllers.CarsController",
-    "Method": "Create",
-    "RelativePath": "api/Cars",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "CarsShop.RequestsDto.CarsShop.CarsCreateDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "CarsShop.Responses.API.APIResponse",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "CarsShop.Controllers.CarsController",
-    "Method": "Get_carService",
-    "RelativePath": "api/Cars",
-    "HttpMethod": "",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "CarsShop.Interfeces.Db.ICarService",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "CarsShop.Controllers.CarsController",
-    "Method": "Update",
-    "RelativePath": "api/Cars/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "CarsShop.RequestsDto.CarsShop.CarsUpdateDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "CarsShop.Responses.API.APIResponse",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "CarsShop.Controllers.CarsController",
-    "Method": "Delete",
-    "RelativePath": "api/Cars/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "CarsShop.Api.Controllers.RequestInfoController",
-    "Method": "SendRequest",
-    "RelativePath": "api/request",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "CarsShop.RequestsDto.RequestInfoDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "CarsShop.Controllers.TrucksController",
+    "ContainingType": "CarsShop.Controllers.VehicleController",
     "Method": "GetAll",
-    "RelativePath": "api/Trucks",
+    "RelativePath": "api/Vehicle",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "CarsShop.Responses.API.APIResponse",
+        "Type": "CarsShop.Dto.Responses.API.APIResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -197,22 +135,22 @@
     ]
   },
   {
-    "ContainingType": "CarsShop.Controllers.TrucksController",
+    "ContainingType": "CarsShop.Controllers.VehicleController",
     "Method": "Create",
-    "RelativePath": "api/Trucks",
+    "RelativePath": "api/Vehicle",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "CarsShop.RequestsDto.TrucksShop.TrucksCreateDto",
+        "Type": "CarsShop.Dto.RequestsDto.Vehicle.Item.VehicleItemCreateDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "CarsShop.Responses.API.APIResponse",
+        "Type": "CarsShop.Dto.Responses.API.APIResult",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -223,9 +161,9 @@
     ]
   },
   {
-    "ContainingType": "CarsShop.Controllers.TrucksController",
+    "ContainingType": "CarsShop.Controllers.VehicleController",
     "Method": "GetById",
-    "RelativePath": "api/Trucks/{id}",
+    "RelativePath": "api/Vehicle/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -238,7 +176,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "CarsShop.Responses.API.APIResponse",
+        "Type": "CarsShop.Dto.Responses.API.APIResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -249,9 +187,9 @@
     ]
   },
   {
-    "ContainingType": "CarsShop.Controllers.TrucksController",
+    "ContainingType": "CarsShop.Controllers.VehicleController",
     "Method": "Update",
-    "RelativePath": "api/Trucks/{id}",
+    "RelativePath": "api/Vehicle/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -262,14 +200,14 @@
         "IsRequired": true
       },
       {
-        "Name": "dto",
-        "Type": "CarsShop.RequestsDto.TrucksShop.TrucksUpdateDto",
+        "Name": "request",
+        "Type": "CarsShop.Dto.RequestsDto.Vehicle.Item.VehicleItemUpdateDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "CarsShop.Responses.API.APIResponse",
+        "Type": "CarsShop.Dto.Responses.API.APIResult",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -280,9 +218,9 @@
     ]
   },
   {
-    "ContainingType": "CarsShop.Controllers.TrucksController",
+    "ContainingType": "CarsShop.Controllers.VehicleController",
     "Method": "Delete",
-    "RelativePath": "api/Trucks/{id}",
+    "RelativePath": "api/Vehicle/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -295,7 +233,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "CarsShop.Responses.API.APIResponse",
+        "Type": "CarsShop.Dto.Responses.API.APIResult",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -306,17 +244,84 @@
     ]
   },
   {
-    "ContainingType": "CarsShop.Api.Controllers.TruckRequestController",
-    "Method": "PostRequest",
-    "RelativePath": "api/trucks/request",
+    "ContainingType": "CarsShop.Controllers.VehicleController",
+    "Method": "Search",
+    "RelativePath": "api/Vehicle/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "text",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "CarsShop.Dto.Responses.API.APIResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CarsShop.Controllers.VehicleRequestController",
+    "Method": "Create",
+    "RelativePath": "api/VehicleRequest",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "CarsShop.Db.Models.TruckRequestInfo",
+        "Name": "dto",
+        "Type": "VehicleRequestCreateDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CarsShop.Controllers.VehicleRequestController",
+    "Method": "GetRequests",
+    "RelativePath": "api/VehicleRequest",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "StatusId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "FromDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ToDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

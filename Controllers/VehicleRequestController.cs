@@ -37,5 +37,19 @@ namespace CarsShop.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetRequests(
+    [FromQuery] RequestFilterDto filter)
+        {
+            var userId = int.Parse(
+                User.FindFirst(AuthService.ClaimIdKey)!.Value);
+
+            var result = await _service.GetRequestsAsync(
+                userId,
+                filter);
+
+            return Ok(result);
+        }
     }
 }

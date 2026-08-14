@@ -58,7 +58,18 @@ namespace IDGCoreWebAPI.Controllers
                 return BadRequest(response);
             }
 
-           return APIResponse.CreateOKWithData(authResponse);
+            return APIResponse.CreateOKWithData(authResponse);
+            /*
+            return Ok(APIResponse.CreateOKWithData(new
+            {
+                token = authResponse.Token,
+                role = authResponse.RoleId == 1 ? "Manager" : "User",
+                //userId = authResponse.UserId,
+                email = authResponse.Email,
+                firstName = authResponse.FirstName,
+                lastName = authResponse.LastName
+            }));
+            */
         }
     }
 }
