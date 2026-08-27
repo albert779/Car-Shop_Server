@@ -30,7 +30,7 @@ namespace CarsShop.Services.Auth
         public AuthService(AppDbContext db, IJwtService jwtService, IOptions<JWTInfo> jwtOptions)
         {
             this._db = db;
-            this._key= jwtOptions.Value.Key;
+            this._key = jwtOptions.Value.Key;
             this._jwtService = jwtService;
             this._hasher = new();
         }
@@ -69,7 +69,7 @@ namespace CarsShop.Services.Auth
             if (result == PasswordVerificationResult.Failed)
                 return AuthResponse.GetResponseWithError(ErrorEmailOrPasswordWrong);
 
-            var claims = GetUserClaims(user);
+            var claims = await GetUserClaims(user);
             string token = GenerateJwt(claims);
 
             return AuthResponse.GetResponseWithToken(
@@ -78,7 +78,7 @@ namespace CarsShop.Services.Auth
                 user.LastName,
                 user.Email,
                 user.Phone
-                
+
             );
         }
         private string GenerateJwt(IEnumerable<Claim> claims)
@@ -90,17 +90,27 @@ namespace CarsShop.Services.Auth
             return token;
         }
 
-        private IEnumerable<Claim> GetUserClaims(User user)
+        private async Task<IEnumerable<Claim>> GetUserClaims(User user)
         {
+            var userRole = await _db.UserToRoles
+        .Include(x => x.Role)
+        .FirstOrDefaultAsync(x => x.UserId == user.Id);
+
+            if (userRole == null)
+            {
+                throw new Exception("User role not found.");
+            }
+
             return new[]
             {
-                new Claim("FirstName", user.FirstName),
+
+                new Claim("firstName", user.FirstName),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(AuthService.ClaimIdKey, user.Id.ToString()),
                 //new Claim("roleId", user.RoleId.ToString())
-                new Claim(ClaimTypes.Role,
-user.RoleId == 1 ? "Manager" : "User"
-        )
+                new Claim(ClaimTypes.Role,userRole.Role.Name),
+                new Claim("roleId", userRole.Role.Id.ToString())
+
             };
         }
     }
