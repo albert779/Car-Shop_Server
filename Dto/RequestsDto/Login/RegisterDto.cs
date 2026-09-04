@@ -14,7 +14,7 @@ namespace CarsShop.Dto.RequestsDto.Login
         public string BirthDate { get; set; }
 
         public string Phone { get; set; }
-        public int RoleId { get; set; } = 2;
+        public int RoleId { get; set; } 
 
         public User ConvertToDbModel()
         {
