@@ -2,6 +2,8 @@
 {
     public class AuthResponse
     {
+        private static int roleID;
+
         // ✅ User info
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
@@ -22,11 +24,11 @@
         }
 
         // ✅ Factory method for success with token
-        public static AuthResponse GetResponseWithToken( string token, string firstName = "", string lastName = "", string email = "", string phone = "")
+        public static AuthResponse GetResponseWithToken( string token, int roleId, string firstName = "", string lastName = "", string email = "", string phone = "")
         {
             return new AuthResponse(true, token, string.Empty)
             {
-                //RoleId=roleId,
+                RoleId=roleId,
                 FirstName = firstName,
                 LastName = lastName,
                 Email = email,

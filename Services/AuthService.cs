@@ -69,11 +69,32 @@ namespace CarsShop.Services.Auth
             if (result == PasswordVerificationResult.Failed)
                 return AuthResponse.GetResponseWithError(ErrorEmailOrPasswordWrong);
 
+            // ==============================
+            // GET USER ROLE
+            // ==============================
+            var userRole = await _db.UserToRoles
+                .Include(x => x.Role)
+                .FirstOrDefaultAsync(x => x.UserId == user.Id);
+
+            if (userRole == null)
+            {
+                return AuthResponse.GetResponseWithError(
+                    "User role not found.");
+            }
+
+            int roleId = userRole.RoleId;
+
+            Console.WriteLine($"UserId: {user.Id}");
+            Console.WriteLine($"RoleId: {roleId}");
+            Console.WriteLine($"RoleName: {userRole.Role.Name}");
+
+
             var claims = await GetUserClaims(user);
             string token = GenerateJwt(claims);
 
             return AuthResponse.GetResponseWithToken(
                 token,
+                roleId,
                 user.FirstName,   // changed from user.Name
                 user.LastName,
                 user.Email,
