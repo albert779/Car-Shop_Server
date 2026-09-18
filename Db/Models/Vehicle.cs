@@ -14,6 +14,6 @@ namespace CarsShop.Db.Models
         public decimal Price { get; set; }
         public VehicleType VehicleType { get; set; }
         public int VehicleTypeId { get; set; }
-        public string ImageUrl { get; set; } = "";
+        public string? ImageUrl { get; set; } = "";
     }
 }

@@ -255,6 +255,7 @@ namespace CarsShop.Services
                     Type = x.Vehicle.VehicleType.Name,
                     Message = x.Message,
                     Status = x.Status.Name,
+                    //UserId = x.UserId,
                     RequestedOn = x.CreatedAt,
                     LastUpdate = x.LastUpdate
                 })

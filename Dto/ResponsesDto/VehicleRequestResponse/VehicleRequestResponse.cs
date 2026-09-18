@@ -3,7 +3,7 @@
     public class VehicleRequestResponse
     {
         public int Id { get; set; }
-
+        public int UserId { get; set; }
         public int VehicleId { get; set; }
         public string Vehicle { get; set; } = string.Empty;
         public string? Model { get; set; }
