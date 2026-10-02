@@ -15,28 +15,6 @@ namespace CarsShop.Services
         }
 
 
-        /*
-        public async Task<DashboardResponse> GetDashboardAsync(int userId)
-        {
-            return new DashboardResponse
-            {
-                TotalRequests = await _context.VehicleRequests
-                    .CountAsync(x => x.UserId == userId),
-
-                PendingRequests = await _context.VehicleRequests
-                    .CountAsync(x => x.UserId == userId &&
-                                     x.RequestStatusId == (int)RequestStatusEnum.Pending),
-
-                ApprovedRequests = await _context.VehicleRequests
-                    .CountAsync(x => x.UserId == userId &&
-                                     x.RequestStatusId == (int)RequestStatusEnum.Approved),
-
-                RejectedRequests = await _context.VehicleRequests
-                    .CountAsync(x => x.UserId == userId &&
-                                     x.RequestStatusId == (int)RequestStatusEnum.Rejected)
-            };
-        }
-        */
         public async Task<DashboardResponse> GetDashboardAsync(int userId)
         {
             Console.WriteLine($"Dashboard UserId: {userId}");
