@@ -22,12 +22,8 @@ namespace CarsShop.Controllers
         public async Task<IActionResult> GetRequests(
             [FromQuery] RequestFilterDto filter)
         {
-            var userId = int.Parse(
-                User.FindFirst("id")!.Value
-            );
-
-            var result = await _requestService
-                .GetRequestsAsync(userId, filter);
+            var userId = GetUserId();
+            var result = await _requestService.GetRequestsAsync(userId, filter);
 
             return Ok(result);
         }

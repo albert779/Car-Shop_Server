@@ -10,7 +10,7 @@ namespace CarsShop.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TableOfRequestsController : ControllerBase
+    public class TableOfRequestsController : AuthorizedController
     {
 
         private readonly ITableOfRequests _service;
@@ -37,12 +37,20 @@ namespace CarsShop.Controllers
         }
 
 
-
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateRequest(
     int id,
     [FromBody] UpdateRequestDto request)
         {
+            if (request == null)
+            {
+                return BadRequest(new
+                {
+                    success = false,
+                    message = "Request data is required"
+                });
+            }
+
             var existingRequest = await _context.VehicleRequests
                 .FirstOrDefaultAsync(x => x.Id == id);
 
@@ -55,36 +63,43 @@ namespace CarsShop.Controllers
                 });
             }
 
+            // Update only the request status
             existingRequest.RequestStatusId = request.StatusId;
+
+            // Update last modification time
             existingRequest.LastUpdate = DateTime.UtcNow;
-
-
-           
 
             try
             {
                 await _context.SaveChangesAsync();
+
+                return Ok(new
+                {
+                    success = true,
+                    message = "Request updated successfully",
+                    data = new
+                    {
+                        requestId = existingRequest.Id,
+                        statusId = existingRequest.RequestStatusId,
+                        lastUpdate = existingRequest.LastUpdate
+                    }
+                });
             }
             catch (DbUpdateException ex)
             {
-                return BadRequest(new
+                return StatusCode(500, new
                 {
                     success = false,
-                    message = ex.InnerException?.Message ?? ex.Message
+                    message = "Database error while updating request",
+                    error = ex.InnerException?.Message ?? ex.Message
                 });
             }
-
-            return Ok(new
-            {
-                success = true,
-                message = "Request updated successfully"
-            });
         }
 
 
         [HttpPost("message")]
         public async Task<IActionResult> SendMessage(
-    [FromBody] CreateMessageDto dto)
+            [FromBody] CreateMessageDto dto)
         {
             if (dto == null)
             {
@@ -92,6 +107,15 @@ namespace CarsShop.Controllers
                 {
                     success = false,
                     message = "Message data is required"
+                });
+            }
+
+            if (dto.RequestId <= 0)
+            {
+                return BadRequest(new
+                {
+                    success = false,
+                    message = "Invalid request ID"
                 });
             }
 
@@ -104,51 +128,42 @@ namespace CarsShop.Controllers
                 });
             }
 
-            var requestExists = await _context.VehicleRequests
-               // .AnyAsync(x => x.Id == dto.RequestId);
-                 .FirstOrDefaultAsync(x => x.Id == dto.RequestId);
+            // Get logged-in user ID from JWT
+            var senderId= GetUserId();
 
-            if (requestExists == null)
+           // Find the vehicle request
+            var request = await _context.VehicleRequests
+                .FirstOrDefaultAsync(x => x.Id == dto.RequestId);
+
+            if (request == null)
             {
-                return BadRequest(new
+                return NotFound(new
                 {
                     success = false,
                     message = $"Request {dto.RequestId} not found"
                 });
             }
 
-            var senderExists = await _context.Users
-                .AnyAsync(x => x.Id == dto.SenderId);
+            // The receiver is the user who created the request.
+            // Do NOT take receiverId from Angular.
+            var receiverId = request.UserId;
 
-            if (!senderExists)
+            if (receiverId <= 0)
             {
                 return BadRequest(new
                 {
                     success = false,
-                    message = $"Sender {dto.SenderId} not found"
+                    message = "Receiver ID is invalid"
                 });
             }
 
-            var receiverExists = await _context.Users
-                .AnyAsync(x => x.Id == dto.ReceiverId);
-
-            if (!receiverExists)
-            {
-                return BadRequest(new
-                {
-                    success = false,
-                    message = $"Receiver {dto.ReceiverId} not found"
-                });
-            }
-
-            // Use one timestamp for both message and request
             var now = DateTime.UtcNow;
 
             var newMessage = new Message
             {
-                RequestId = dto.RequestId,
-                SenderId = dto.SenderId,
-                ReceiverId = dto.ReceiverId,
+                RequestId = request.Id,
+                SenderId = senderId,
+                ReceiverId = receiverId,
                 MessageText = dto.MessageText.Trim(),
                 CreatedAt = now
             };
@@ -157,9 +172,8 @@ namespace CarsShop.Controllers
             {
                 _context.Messages.Add(newMessage);
 
-                // Update VehicleRequest.LastUpdate
-                requestExists.LastUpdate = now;
-
+                // Update the request's last activity time
+                request.LastUpdate = now;
 
                 await _context.SaveChangesAsync();
 
@@ -167,7 +181,6 @@ namespace CarsShop.Controllers
                 {
                     success = true,
                     message = "Message added successfully",
-
                     data = new
                     {
                         id = newMessage.Id,
@@ -176,18 +189,26 @@ namespace CarsShop.Controllers
                         receiverId = newMessage.ReceiverId,
                         messageText = newMessage.MessageText,
                         createdAt = newMessage.CreatedAt,
-                        
-                        lastUpdate = requestExists.LastUpdate
+                        lastUpdate = request.LastUpdate
                     }
+                });
+            }
+            catch (DbUpdateException ex)
+            {
+                return StatusCode(500, new
+                {
+                    success = false,
+                    message = "Database error while saving message",
+                    error = ex.InnerException?.Message ?? ex.Message
                 });
             }
             catch (Exception ex)
             {
-                return BadRequest(new
+                return StatusCode(500, new
                 {
                     success = false,
-                    message = ex.Message,
-                    innerException = ex.InnerException?.Message
+                    message = "Failed to save message",
+                    error = ex.Message
                 });
             }
         }

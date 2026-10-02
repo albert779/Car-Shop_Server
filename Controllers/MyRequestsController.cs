@@ -22,14 +22,12 @@ public class DashboardController : AuthorizedController
     [HttpGet]
     public async Task<IActionResult> Dashboard()
     {
-        var userIdClaim = User.FindFirst(AuthService.ClaimIdKey);
+        var userId = GetUserId();
 
-        if (userIdClaim == null)
+        if (userId == -1)
         {
             return Unauthorized();
         }
-
-        var userId = int.Parse(userIdClaim.Value);
 
         var result = await _vehicleRequestService.GetDashboardAsync(userId);
 

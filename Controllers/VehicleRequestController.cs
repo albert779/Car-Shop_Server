@@ -24,15 +24,7 @@ namespace CarsShop.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] VehicleRequestCreateDto dto)
         {
-            var userClaim = this.User.Claims
-                .FirstOrDefault(x => x.Type == AuthService.ClaimIdKey);
-
-            if (userClaim == null)
-                return Unauthorized("User claim not found");
-
-            if (!int.TryParse(userClaim.Value, out int userId))
-                return Unauthorized("Invalid user id in token");
-
+            var userId = GetUserId();
             await _service.AddNew(dto, userId);
 
             return Ok();
@@ -42,8 +34,7 @@ namespace CarsShop.Controllers
         public async Task<IActionResult> GetRequests(
     [FromQuery] RequestFilterDto filter)
         {
-            var userId = int.Parse(
-                User.FindFirst(AuthService.ClaimIdKey)!.Value);
+            var userId = GetUserId();
 
             var result = await _service.GetRequestsAsync(
                 userId,
