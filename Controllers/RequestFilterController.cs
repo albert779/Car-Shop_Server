@@ -8,7 +8,7 @@ namespace CarsShop.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class RequestFilterController : ControllerBase
+    public class RequestFilterController : AuthorizedController
     {
         private readonly IVehicleRequestService _requestService;
 

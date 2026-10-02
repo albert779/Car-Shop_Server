@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarsShop.Controllers
 {
-    [Authorize]
+
     [ApiController]
     [Route("api/[controller]")]
-    public class VehicleController : ControllerBase
+    public class VehicleController : AuthorizedController
     {
         private readonly IVehicleService _vehicleService;
 

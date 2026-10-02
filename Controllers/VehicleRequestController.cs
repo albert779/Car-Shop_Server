@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarsShop.Controllers
 {
-    [Authorize]
+
     [ApiController]
     [Route("api/[controller]")]
-    public class VehicleRequestController : ControllerBase
+    public class VehicleRequestController : AuthorizedController
     {
         private readonly IVehicleRequestService _service;
 

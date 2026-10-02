@@ -10,7 +10,7 @@ namespace CarsShop.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-public class DashboardController : ControllerBase
+public class DashboardController : AuthorizedController
 {
     private readonly IVehicleRequestService _vehicleRequestService;
 
