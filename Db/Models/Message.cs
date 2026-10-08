@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarsShop.Db.Models
@@ -11,24 +13,28 @@ namespace CarsShop.Db.Models
 
         public int RequestId { get; set; }
 
-        public int SenderId { get; set; }
+        // User who created the original vehicle request
+        public int CreatedByUserId { get; set; }
 
-        public int ReceiverId { get; set; }
+        // User who replied to the request
+        public int ReplyedByUserId { get; set; }
 
         [Required]
         public string MessageText { get; set; } = string.Empty;
 
         public DateTime CreatedAt { get; set; }
 
-        // Navigation
+        // Message -> VehicleRequest
         [ForeignKey(nameof(RequestId))]
-        public VehicleRequest? Request { get; set; }
+        public VehicleRequest Request { get; set; } = null!;
 
-        [ForeignKey(nameof(SenderId))]
-        public User? Sender { get; set; }
+        // Message -> original requester
+        [ForeignKey(nameof(CreatedByUserId))]
+        public User CreatedByUser { get; set; } = null!;
 
-        [ForeignKey(nameof(ReceiverId))]
-        public User? Receiver { get; set; }
-        //public ICollection<Message> Messages { get; set; } = new List<Message>();
+        // Message -> person who replied
+        [ForeignKey(nameof(ReplyedByUserId))]
+        public User ReplyedByUser { get; set; } = null!;
     }
 }
+

@@ -1,6 +1,4 @@
 ﻿
-
-
 using CarsShop.Db.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,18 +24,24 @@ namespace CarsShop.Db
         {
             base.OnModelCreating(modelBuilder);
 
+            // =========================
             // Vehicle
+            // =========================
             modelBuilder.Entity<Vehicle>()
                 .ToTable("Vehicles");
 
+            // =========================
             // VehicleRequest
+            // =========================
             modelBuilder.Entity<VehicleRequest>()
                 .ToTable("VehicleRequest");
 
+            // =========================
+            // UserToRole
+            // =========================
             modelBuilder.Entity<UserToRole>()
                 .ToTable("UserToRole");
 
-            // UserRole composite primary key
             modelBuilder.Entity<UserToRole>()
                 .HasKey(x => new
                 {
@@ -45,47 +49,68 @@ namespace CarsShop.Db
                     x.RoleId
                 });
 
-            // UserRole -> User
+            // UserToRole -> User
             modelBuilder.Entity<UserToRole>()
                 .HasOne(x => x.User)
                 .WithMany()
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // UserRole -> Role
+            // UserToRole -> Role
             modelBuilder.Entity<UserToRole>()
                 .HasOne(x => x.Role)
                 .WithMany()
                 .HasForeignKey(x => x.RoleId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-
             // =========================
             // Message
             // =========================
-            modelBuilder.Entity<Message>()
-                .ToTable("Messages");
+            modelBuilder.Entity<Message>(entity =>
+            {
+                entity.ToTable("Messages");
 
-            // Message -> VehicleRequest
-            modelBuilder.Entity<Message>()
-                .HasOne(x => x.Request)
-                .WithMany()
-                .HasForeignKey(x => x.RequestId)
-                .OnDelete(DeleteBehavior.Restrict);
+                entity.HasKey(x => x.Id);
 
-            // Message -> User (Sender)
-            modelBuilder.Entity<Message>()
-                .HasOne(x => x.Sender)
-                .WithMany()
-                .HasForeignKey(x => x.SenderId)
-                .OnDelete(DeleteBehavior.Restrict);
+                entity.Property(x => x.RequestId)
+                    .HasColumnName("RequestId")
+                    .IsRequired();
 
-            // Message -> User (Receiver)
-            modelBuilder.Entity<Message>()
-                .HasOne(x => x.Receiver)
-                .WithMany()
-                .HasForeignKey(x => x.ReceiverId)
-                .OnDelete(DeleteBehavior.Restrict);
+                entity.Property(x => x.CreatedByUserId)
+                    .HasColumnName("CreatedByUserId")
+                    .IsRequired();
+
+                entity.Property(x => x.ReplyedByUserId)
+                    .HasColumnName("ReplyedByUserId")
+                    .IsRequired();
+
+                entity.Property(x => x.MessageText)
+                    .HasColumnName("MessageText")
+                    .IsRequired();
+
+                entity.Property(x => x.CreatedAt)
+                    .HasColumnName("CreatedAt")
+                    .IsRequired();
+
+                // Message -> VehicleRequest
+                entity.HasOne(x => x.Request)
+                    .WithMany(x => x.Messages)
+                    .HasForeignKey(x => x.RequestId)
+                    .HasPrincipalKey(x => x.Id)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+               
+
+                entity.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedByUserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(x => x.ReplyedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.ReplyedByUserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
         }
     }
 }

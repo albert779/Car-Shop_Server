@@ -20,5 +20,6 @@
         public DateTime RequestedOn { get; set; }
 
         public DateTime LastUpdate { get; set; }
+        public string? LastMessage { get; set; }
     }
 }

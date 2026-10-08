@@ -58,6 +58,14 @@ builder.Services.AddOptions<EmailSettingsConfig>()
     .ValidateDataAnnotations()
     .ValidateOnStart();
 
+builder.Services.AddScoped<
+    IUpdateRequestService,
+    UpdateRequestService>();
+
+builder.Services.AddScoped<
+    ISendRequestService,
+    SendRequestService>();
+
 // DEBUG (optional but recommended)
 var emailSection = builder.Configuration.GetSection("EmailSettings");
 Console.WriteLine("SMTP USER: " + emailSection["SmtpUser"]);

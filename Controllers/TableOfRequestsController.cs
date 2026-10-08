@@ -1,6 +1,4 @@
 ﻿
-using CarsShop.Db;
-using CarsShop.Db.Models;
 using CarsShop.Dto.Requests;
 using CarsShop.Interfeces.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -12,35 +10,42 @@ namespace CarsShop.Controllers
     [Route("api/[controller]")]
     public class TableOfRequestsController : AuthorizedController
     {
-
         private readonly ITableOfRequests _service;
-        private readonly AppDbContext _context;
+        private readonly IUpdateRequestService _updateService;
+        private readonly ISendRequestService _sendService;
 
         public TableOfRequestsController(
-    ITableOfRequests service,
-    AppDbContext context)
+            ITableOfRequests service,
+            IUpdateRequestService updateService,
+            ISendRequestService sendService)
         {
             _service = service;
-            _context = context;
+            _updateService = updateService;
+            _sendService = sendService;
         }
 
-
-
+        // GET: api/TableOfRequests
         [HttpGet]
-        public async Task<IActionResult> GetRequests([FromQuery] string? search, int? statusId, DateTime? fromDate,
-    DateTime? toDate)
+        public async Task<IActionResult> GetRequests(
+            [FromQuery] string? search,
+            int? statusId,
+            DateTime? fromDate,
+            DateTime? toDate)
         {
-            var result = await _service.GetRequests(search, statusId, fromDate,
-     toDate);
+            var result = await _service.GetRequests(
+                search,
+                statusId,
+                fromDate,
+                toDate);
 
             return Ok(result);
         }
 
-
+        // PUT: api/TableOfRequests/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateRequest(
-    int id,
-    [FromBody] UpdateRequestDto request)
+            int id,
+            [FromBody] UpdateRequestDto request)
         {
             if (request == null)
             {
@@ -51,27 +56,21 @@ namespace CarsShop.Controllers
                 });
             }
 
-            var existingRequest = await _context.VehicleRequests
-                .FirstOrDefaultAsync(x => x.Id == id);
-
-            if (existingRequest == null)
-            {
-                return NotFound(new
-                {
-                    success = false,
-                    message = "Request not found"
-                });
-            }
-
-            // Update only the request status
-            existingRequest.RequestStatusId = request.StatusId;
-
-            // Update last modification time
-            existingRequest.LastUpdate = DateTime.UtcNow;
-
             try
             {
-                await _context.SaveChangesAsync();
+                var updatedRequest =
+                    await _updateService.UpdateRequestAsync(
+                        id,
+                        request);
+
+                if (updatedRequest == null)
+                {
+                    return NotFound(new
+                    {
+                        success = false,
+                        message = "Request not found"
+                    });
+                }
 
                 return Ok(new
                 {
@@ -79,9 +78,9 @@ namespace CarsShop.Controllers
                     message = "Request updated successfully",
                     data = new
                     {
-                        requestId = existingRequest.Id,
-                        statusId = existingRequest.RequestStatusId,
-                        lastUpdate = existingRequest.LastUpdate
+                        requestId = updatedRequest.Id,
+                        statusId = updatedRequest.RequestStatusId,
+                        lastUpdate = updatedRequest.LastUpdate
                     }
                 });
             }
@@ -96,7 +95,7 @@ namespace CarsShop.Controllers
             }
         }
 
-
+        // POST: api/TableOfRequests/message
         [HttpPost("message")]
         public async Task<IActionResult> SendMessage(
             [FromBody] CreateMessageDto dto)
@@ -128,54 +127,32 @@ namespace CarsShop.Controllers
                 });
             }
 
-            // Get logged-in user ID from JWT
-            var senderId= GetUserId();
+            var senderId = GetUserId();
 
-           // Find the vehicle request
-            var request = await _context.VehicleRequests
-                .FirstOrDefaultAsync(x => x.Id == dto.RequestId);
-
-            if (request == null)
+            if (senderId <= 0)
             {
-                return NotFound(new
+                return Unauthorized(new
                 {
                     success = false,
-                    message = $"Request {dto.RequestId} not found"
+                    message = "Invalid sender ID"
                 });
             }
-
-            // The receiver is the user who created the request.
-            // Do NOT take receiverId from Angular.
-            var receiverId = request.UserId;
-
-            if (receiverId <= 0)
-            {
-                return BadRequest(new
-                {
-                    success = false,
-                    message = "Receiver ID is invalid"
-                });
-            }
-
-            var now = DateTime.UtcNow;
-
-            var newMessage = new Message
-            {
-                RequestId = request.Id,
-                SenderId = senderId,
-                ReceiverId = receiverId,
-                MessageText = dto.MessageText.Trim(),
-                CreatedAt = now
-            };
 
             try
             {
-                _context.Messages.Add(newMessage);
+                var newMessage =
+                    await _sendService.SendMessageAsync(
+                        dto,
+                        senderId);
 
-                // Update the request's last activity time
-                request.LastUpdate = now;
-
-                await _context.SaveChangesAsync();
+                if (newMessage == null)
+                {
+                    return NotFound(new
+                    {
+                        success = false,
+                        message = $"Request {dto.RequestId} not found"
+                    });
+                }
 
                 return Ok(new
                 {
@@ -185,11 +162,11 @@ namespace CarsShop.Controllers
                     {
                         id = newMessage.Id,
                         requestId = newMessage.RequestId,
-                        senderId = newMessage.SenderId,
-                        receiverId = newMessage.ReceiverId,
+                        senderId = newMessage.CreatedByUserId,
+                        receiverId = newMessage.ReplyedByUserId,
                         messageText = newMessage.MessageText,
                         createdAt = newMessage.CreatedAt,
-                        lastUpdate = request.LastUpdate
+                        lastUpdate = newMessage.Request.LastUpdate
                     }
                 });
             }
@@ -200,6 +177,14 @@ namespace CarsShop.Controllers
                     success = false,
                     message = "Database error while saving message",
                     error = ex.InnerException?.Message ?? ex.Message
+                });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new
+                {
+                    success = false,
+                    message = ex.Message
                 });
             }
             catch (Exception ex)

@@ -20,6 +20,7 @@
 
 
         public DateTime LastUpdate { get; set; }
+        public string? LastMessage { get; set; }
 
 
     }

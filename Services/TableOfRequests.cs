@@ -42,25 +42,7 @@ namespace CarsShop.Services
                 query = query.Where(x => x.Status.Id == statusId.Value);
             }
 
-            /*
-            // From Date
-            if (fromDate.HasValue)
-            {
-                var from = fromDate.Value.Date;
-
-                query = query.Where(x =>
-                    x.CreatedAt >= from);
-            }
-
-            // To Date
-            if (toDate.HasValue)
-            {
-                var to = toDate.Value.Date.AddDays(1);
-
-                query = query.Where(x =>
-                    x.CreatedAt < to);
-            }
-            */
+           
 
             if (fromDate.HasValue)
             {
@@ -91,6 +73,15 @@ namespace CarsShop.Services
 
                     Image = x.Vehicle.Image,
                     Message = x.Message,
+
+                    // Latest message sent by the customer
+                    LastMessage = context.Messages
+                        .Where(m =>
+                            m.RequestId == x.Id &&
+                            m.CreatedByUserId == x.UserId)
+                        .OrderByDescending(m => m.CreatedAt)
+                        .Select(m => m.MessageText)
+                        .FirstOrDefault(),
 
                     Status = x.Status.Name,
 
