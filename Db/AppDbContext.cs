@@ -62,7 +62,6 @@ namespace CarsShop.Db
                 .WithMany()
                 .HasForeignKey(x => x.RoleId)
                 .OnDelete(DeleteBehavior.Cascade);
-
             // =========================
             // Message
             // =========================
@@ -72,8 +71,13 @@ namespace CarsShop.Db
 
                 entity.HasKey(x => x.Id);
 
-                entity.Property(x => x.RequestId)
-                    .HasColumnName("RequestId")
+                entity.Property(x => x.CreatedAt)
+                    .HasColumnName("CreatedAt")
+                    .HasDefaultValueSql("GETUTCDATE()")
+                    .IsRequired();
+
+                entity.Property(x => x.MessageText)
+                    .HasColumnName("MessageText")
                     .IsRequired();
 
                 entity.Property(x => x.CreatedByUserId)
@@ -84,29 +88,23 @@ namespace CarsShop.Db
                     .HasColumnName("ReplyedByUserId")
                     .IsRequired();
 
-                entity.Property(x => x.MessageText)
-                    .HasColumnName("MessageText")
-                    .IsRequired();
-
-                entity.Property(x => x.CreatedAt)
-                    .HasColumnName("CreatedAt")
+                entity.Property(x => x.RequestId)
                     .IsRequired();
 
                 // Message -> VehicleRequest
                 entity.HasOne(x => x.Request)
                     .WithMany(x => x.Messages)
                     .HasForeignKey(x => x.RequestId)
-                    .HasPrincipalKey(x => x.Id)
                     .OnDelete(DeleteBehavior.Restrict);
 
-               
-
-                entity.HasOne(x => x.CreatedByUser)
+                // Message -> Sender (User)
+                entity.HasOne(x => x.Sender)
                     .WithMany()
                     .HasForeignKey(x => x.CreatedByUserId)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                entity.HasOne(x => x.ReplyedByUser)
+                // Message -> Receiver (User)
+                entity.HasOne(x => x.Receiver)
                     .WithMany()
                     .HasForeignKey(x => x.ReplyedByUserId)
                     .OnDelete(DeleteBehavior.Restrict);

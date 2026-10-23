@@ -1,9 +1,11 @@
 ﻿
+using CarsShop.Dto.Messages;
 using CarsShop.Dto.Requests;
 using CarsShop.Interfeces.Services;
+using CarsShop.Services.Models;
+using Iced.Intel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 namespace CarsShop.Controllers
 {
     [ApiController]
@@ -100,14 +102,6 @@ namespace CarsShop.Controllers
         public async Task<IActionResult> SendMessage(
             [FromBody] CreateMessageDto dto)
         {
-            if (dto == null)
-            {
-                return BadRequest(new
-                {
-                    success = false,
-                    message = "Message data is required"
-                });
-            }
 
             if (dto.RequestId <= 0)
             {
@@ -129,21 +123,11 @@ namespace CarsShop.Controllers
 
             var senderId = GetUserId();
 
-            if (senderId <= 0)
-            {
-                return Unauthorized(new
-                {
-                    success = false,
-                    message = "Invalid sender ID"
-                });
-            }
+            SendMessageCreate message = new SendMessageCreate(dto.RequestId, dto.MessageText, senderId);
 
             try
             {
-                var newMessage =
-                    await _sendService.SendMessageAsync(
-                        dto,
-                        senderId);
+                var newMessage = await _sendService.SendMessageAsync(message);
 
                 if (newMessage == null)
                 {

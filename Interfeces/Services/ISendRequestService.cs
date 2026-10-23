@@ -1,12 +1,11 @@
 ﻿using CarsShop.Db.Models;
-using CarsShop.Dto.Requests;
+using CarsShop.Dto.Messages;
+using CarsShop.Services.Models;
 
 namespace CarsShop.Interfeces.Services
 {
     public interface ISendRequestService
     {
-        Task<Message?> SendMessageAsync(
-            CreateMessageDto dto,
-            int senderId);
+        Task<Message?> SendMessageAsync(SendMessageCreate messageCreate);
     }
 }

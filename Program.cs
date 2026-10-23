@@ -1,4 +1,5 @@
-﻿using CarsShop.Configuration;
+﻿
+using CarsShop.Configuration;
 using CarsShop.Configurations;
 using CarsShop.Db;
 using CarsShop.Interfeces.Db;
@@ -15,7 +16,8 @@ using Serilog.Events;
 using Serilog.Formatting.Json;
 using System.Text;
 
-
+using CarsShop.Interfeces.Services;
+using CarsShop.Services;
 
 
 // ================= Serilog =================
@@ -113,6 +115,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 builder.Services.AddAuthorization();
+builder.Services.AddScoped<IMyRequestsService, MyRequestsService>();
 
 // ================= Build App =================
 var app = builder.Build();
