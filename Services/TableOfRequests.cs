@@ -1,7 +1,4 @@
-﻿
-
-using CarsShop.Db;
-using CarsShop.Db.Models;
+﻿using CarsShop.Database;
 using CarsShop.Dto.Responses.VehicleRequests;
 using CarsShop.Interfeces.Services;
 using Microsoft.EntityFrameworkCore;

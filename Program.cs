@@ -1,7 +1,6 @@
 ﻿
 using CarsShop.Configuration;
-using CarsShop.Configurations;
-using CarsShop.Db;
+using CarsShop.Database;
 using CarsShop.Interfeces.Db;
 using CarsShop.Interfeces.Services;
 using CarsShop.Middlewares;
@@ -9,15 +8,11 @@ using CarsShop.Services;
 using CarsShop.Services.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Json;
 using System.Text;
-
-using CarsShop.Interfeces.Services;
-using CarsShop.Services;
 
 
 // ================= Serilog =================

@@ -1,6 +1,6 @@
 ﻿
 using CarsShop.Configuration;
-using CarsShop.Db;
+using CarsShop.Database;
 using CarsShop.Db.Models;
 using CarsShop.Dto.RequestsDto.Login;
 using CarsShop.Dto.Responses.Auth;

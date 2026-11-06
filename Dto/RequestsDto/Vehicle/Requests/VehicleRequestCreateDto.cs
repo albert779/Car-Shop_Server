@@ -1,4 +1,5 @@
-﻿using CarsShop.Db.Models;
+﻿using CarsShop.Database.Models;
+using CarsShop.Db.Models;
 using CarsShop.Services;
 
 public class VehicleRequestCreateDto

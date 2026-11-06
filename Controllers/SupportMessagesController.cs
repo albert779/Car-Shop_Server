@@ -1,6 +1,6 @@
-﻿using CarsShop.Dto.Messages;
-using CarsShop.Db;
-using CarsShop.Db.Models;
+﻿using CarsShop.Database;
+using CarsShop.Database.Models;
+using CarsShop.Dto.Messages;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

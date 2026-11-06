@@ -1,5 +1,5 @@
-﻿using CarsShop.Dto.Requests;
-using CarsShop.Db.Models;
+﻿using CarsShop.Database.Models;
+using CarsShop.Dto.Requests;
 
 namespace CarsShop.Interfeces.Services
 {

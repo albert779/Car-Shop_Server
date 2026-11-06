@@ -3,9 +3,9 @@ using CarsShop.Dto.Messages;
 using CarsShop.Dto.Requests;
 using CarsShop.Interfeces.Services;
 using CarsShop.Services.Models;
-using Iced.Intel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 namespace CarsShop.Controllers
 {
     [ApiController]
@@ -144,13 +144,13 @@ namespace CarsShop.Controllers
                     message = "Message added successfully",
                     data = new
                     {
-                        id = newMessage.Id,
-                        requestId = newMessage.RequestId,
-                        senderId = newMessage.CreatedByUserId,
-                        receiverId = newMessage.ReplyedByUserId,
-                        messageText = newMessage.MessageText,
-                        createdAt = newMessage.CreatedAt,
-                        lastUpdate = newMessage.Request.LastUpdate
+                        id = newMessage?.Id,
+                        requestId = newMessage?.RequestId,
+                        senderId = newMessage?.CreatedByUserId,
+                        receiverId = newMessage?.ReplyedByUserId,
+                        messageText = newMessage?.MessageText,
+                        createdAt = newMessage?.CreatedAt,
+                        lastUpdate = newMessage?.Request.LastUpdate
                     }
                 });
             }

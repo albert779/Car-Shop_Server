@@ -1,14 +1,10 @@
-﻿using CarsShop.Db;
-using CarsShop.Dto.Responses;
+﻿//using Microsoft.EntityFrameworkCore;
+using CarsShop.Database;
+using CarsShop.Dto;
 using CarsShop.Dto.Responses.VehicleRequests;
-using CarsShop.Interfeces.Services;
 //using CarsShop.DTOs;
 //using CarsShop.Models;
 using Microsoft.EntityFrameworkCore;
-using CarsShop.Db.Models;
-using CarsShop.Dto.Responses.VehicleRequests;
-using CarsShop.Dto;
-//using Microsoft.EntityFrameworkCore;
 
 namespace CarsShop.Services
 {

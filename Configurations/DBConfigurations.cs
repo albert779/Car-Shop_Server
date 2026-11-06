@@ -1,4 +1,4 @@
-﻿using CarsShop.Db;
+﻿using CarsShop.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarsShop.Configurations

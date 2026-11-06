@@ -8,6 +8,7 @@
         public string Vehicle { get; set; } = string.Empty;
         public string? Model { get; set; }
         public string? Image { get; set; }
+        public int Year { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Color { get; set; } = string.Empty;
 

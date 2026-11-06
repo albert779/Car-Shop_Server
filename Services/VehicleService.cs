@@ -1,6 +1,5 @@
 ﻿
-using CarsShop.Db;
-using CarsShop.Db.Models;
+using CarsShop.Database;
 using CarsShop.Dto.RequestsDto.Vehicle.Item;
 using CarsShop.Dto.Responses.VehicleShop;
 using CarsShop.Interfeces.Db;
