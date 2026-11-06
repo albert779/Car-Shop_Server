@@ -1,17 +1,14 @@
 ﻿using CarsShop.Configuration;
-using CarsShop.Db;
+using CarsShop.Database;
+using CarsShop.Database.Models;
 using CarsShop.Db.Models;
+using CarsShop.Dto;
 using CarsShop.Dto.Responses;
+using CarsShop.Dto.Responses.VehicleRequests;
 using CarsShop.Interfeces.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using System.Drawing;
-using System.Numerics;
-using CarsShop.Dto.RequestsDto;
-using CarsShop.Dto.Responses.VehicleRequests;
-using CarsShop.Dto;
-using CarsShop.Dto.Responses;
 
 namespace CarsShop.Services
 {
@@ -30,6 +27,8 @@ namespace CarsShop.Services
             _emailSettingsConfig = smtpConfig.Value;
         }
         //---------------------
+
+        /*
         public async Task<PagedResult<VehicleRequestResponse>> GetRequestsAsync(
         int userId,
         RequestFilterDto filter)
@@ -83,7 +82,81 @@ namespace CarsShop.Services
                 PageSize = filter.PageSize
             };
         }
-    
+    */
+
+
+
+        public async Task<PagedResult<VehicleRequestResponse>> GetRequestsAsync(
+            int userId,
+            RequestFilterDto filter)
+        {
+            // Start with the logged-in user's requests
+            var query = _context.VehicleRequests
+                .Include(x => x.Vehicle)
+                    .ThenInclude(v => v.VehicleType)
+                .Include(x => x.Status)
+                .Where(x => x.UserId == userId);
+
+            // SEARCH
+            if (!string.IsNullOrWhiteSpace(filter.Search))
+            {
+                var search = filter.Search.Trim();
+
+                query = query.Where(x =>
+                    (x.Vehicle.Model != null && x.Vehicle.Model.Contains(search)) ||
+                    (x.Message != null && x.Message.Contains(search)) ||
+                    (x.Vehicle.Color != null && x.Vehicle.Color.Contains(search)));
+            }
+
+            // STATUS FILTER
+            if (filter.StatusId.HasValue)
+            {
+                query = query.Where(x =>
+                    x.RequestStatusId == filter.StatusId.Value);
+            }
+
+            // COUNT BEFORE PAGINATION
+            var total = await query.CountAsync();
+
+            // RESULTS
+            var data = await query
+                .OrderByDescending(x => x.CreatedAt)
+                .Skip((filter.Page - 1) * filter.PageSize)
+                .Take(filter.PageSize)
+                .Select(x => new VehicleRequestResponse
+                {
+                    Id = x.Id,
+                    UserId = x.UserId,
+                    VehicleId = x.VehicleId,
+
+                    Vehicle = x.Vehicle.Model,
+                    Model = x.Vehicle.Model,
+                    Image = x.Vehicle.Image,
+
+                    // Assuming Vehicle.Date is DateTime
+                    Year = x.Vehicle.Date.Year,
+
+                    Color = x.Vehicle.Color,
+                    Type = x.Vehicle.VehicleType.Name,
+
+                    Message = x.Message,
+                    Status = x.Status.Name,
+
+                    CreatedAt = x.CreatedAt,
+                    RequestedOn = x.CreatedAt,
+                    LastUpdate = x.LastUpdate
+                })
+                .ToListAsync();
+
+            return new PagedResult<VehicleRequestResponse>
+            {
+                Items = data,
+                TotalCount = total,
+                Page = filter.Page,
+                PageSize = filter.PageSize
+            };
+        }
+
 
 
 
@@ -124,6 +197,11 @@ namespace CarsShop.Services
             // misisng save in DB on the status
             
         }
+
+        //private MimeEntity BuildBody(User user, Vehicle vehicle, string message)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public async Task<DashboardResponse> GetDashboardAsync(int userId)
         {
