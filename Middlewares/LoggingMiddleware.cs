@@ -1,6 +1,7 @@
 ﻿
 
 using CarsShop.Services.Auth;
+using CarsShop.Services.Implementations;
 using System.Diagnostics;
 using System.Security.Claims;
 

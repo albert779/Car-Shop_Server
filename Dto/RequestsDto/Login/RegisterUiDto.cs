@@ -1,10 +1,11 @@
-﻿using CarsShop.Db.Models;
+﻿/*
+using CarsShop.Db.Models;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 
 namespace CarsShop.Dto.RequestsDto.Login
 {
-    public class RegisterDto
+    public class RegisterUiDto
     {
         //public int Id { get; set; } 
         public string FirstName { get; set; }
@@ -30,17 +31,31 @@ namespace CarsShop.Dto.RequestsDto.Login
                 Password = string.Empty,
                 //Password = Password,
                 RoleId = RoleId
-                    
-
-
-                //BirthDate = DateOnly.ParseExact(
-                //    BirthDate,
-                //    "dd-MM-yyyy",
-                //    CultureInfo.InvariantCulture
-                //    ),
             };
             return model;
         }
 
+    }
+}
+*/
+
+namespace CarsShop.Dto.RequestsDto.Login
+{
+    public class RegisterUiDto
+    {
+        public string FirstName { get; set; } = string.Empty;
+
+        public string LastName { get; set; } = string.Empty;
+
+        public string Email { get; set; } = string.Empty;
+
+        public string Password { get; set; } = string.Empty;
+
+        // Expected format: yyyy-MM-dd
+        public string BirthDate { get; set; } = string.Empty;
+
+        public string Phone { get; set; } = string.Empty;
+
+        public int RoleId { get; set; }
     }
 }

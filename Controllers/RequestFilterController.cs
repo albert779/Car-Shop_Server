@@ -3,6 +3,9 @@ using CarsShop.Db.Models;
 using CarsShop.Interfeces.Services;
 using CarsShop.Services;
 using Microsoft.AspNetCore.Mvc;
+using CarsShop.Dto.RequestsDto;
+using CarsShop.Dto.RequestsDto.RequestFilterDto;
+//using CarsShop.Services.Interfaces;
 
 namespace CarsShop.Controllers
 {
@@ -23,8 +26,13 @@ namespace CarsShop.Controllers
             [FromQuery] RequestFilterDto filter)
         {
             var userId = GetUserId();
-            var result = await _requestService.GetRequestsAsync(userId, filter);
+            //var result = await _requestService.GetRequestsAsync(userId, filter);
+            var serviceFilter =
+            RequestFilterDto.ConvertToServiceDto(filter);
 
+            var result = await _requestService.GetRequestsAsync(
+                GetUserId(),
+                serviceFilter);
             return Ok(result);
         }
     }

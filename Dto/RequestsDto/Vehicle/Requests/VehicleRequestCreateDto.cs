@@ -1,29 +1,17 @@
-﻿using CarsShop.Database.Models;
-using CarsShop.Db.Models;
-using CarsShop.Services;
-
-public class VehicleRequestCreateDto
+﻿public class VehicleRequestCreateDto
 {
     public int CarId { get; set; }
     public string Message { get; set; } = string.Empty;
 
 
-    public static VehicleRequest ConvertToDbModel(VehicleRequestCreateDto request, int userId, DateTime createdAt, DateTime lastUpdate, RequestStatusEnum status)
+
+    public static CarsShop.Dto.Responses.Requests.VehicleRequestCreateDto ConvertServiceDto(VehicleRequestCreateDto request)
     {
-        var vehicle = new Vehicle() { Id = request.CarId };
-        var user = new User() { Id = userId };
-        var statusString = status.ToString();
-
-        var dbModel = new VehicleRequest()
+        var item = new CarsShop.Dto.Responses.Requests.VehicleRequestCreateDto()
         {
-            Vehicle = vehicle,
+            CarId = request.CarId,
             Message = request.Message,
-            Status = new RequestStatus() { Name = statusString },
-            CreatedAt = createdAt,
-            LastUpdate = lastUpdate,
-            User = user,
         };
-
-        return dbModel;
+        return item;
     }
 }

@@ -1,11 +1,11 @@
 ﻿using CarsShop.Dto.RequestsDto.Vehicle.Item;
 using CarsShop.Dto.Responses.API;
 using CarsShop.Dto.Responses.VehicleShop;
-using CarsShop.Interfeces.Db;
-using Microsoft.AspNetCore.Authorization;
+using CarsShop.Interfeces.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
+using ServiceVehicleItemUpdateDto =
+    CarsShop.Services.DTOs.Requests.Vehicle.Item.VehicleItemUpdateDto;
 
 namespace CarsShop.Controllers
 {
@@ -21,40 +21,7 @@ namespace CarsShop.Controllers
             _vehicleService = vehicleService;
         }
 
-
         /*
-        [HttpGet]
-        public async Task<ActionResult<APIResponse>> GetAll([FromQuery] string? type)
-        {
-            var vehicles = await _vehicleService.GetListAsync(type);
-
-            if (!vehicles.Any())
-            {
-                var error = APIResponse.CreateBadWithMessage<string>("No vehicles found");
-                return NotFound(error);
-            }
-
-            var response = APIResponse.CreateOKWithData(vehicles);
-            return Ok(response);
-        }
-        // =========================
-        // GET BY ID
-        // =========================
-        [HttpGet("{id}")]
-        public async Task<ActionResult<APIResponse>> GetById(int id)
-        {
-            var vehicle = await _vehicleService.GetByIdAsync(id);
-
-            if (vehicle == null)
-            {
-                var error = APIResponse.CreateBadWithMessage("Vehicle with id {id} not found");
-                return NotFound(error);
-
-            }
-            return APIResponse.CreateOKWithData<GetVehicleResponse>(vehicle);
-        }
-        */
-
         [HttpGet]
         public async Task<ActionResult<APIResponse>> GetAll([FromQuery] string? type)
         {
@@ -71,10 +38,29 @@ namespace CarsShop.Controllers
             return Ok(response);
         }
 
+        */
+
+        [HttpGet]
+        public async Task<ActionResult<APIResponse>> GetAll(
+        [FromQuery] string? type)
+        {
+            var vehicles = await _vehicleService.GetListAsync(type);
+
+            if (vehicles == null)
+            {
+                return Ok(APIResponse.CreateOKWithData(
+                    new List<GetVehicleResponse>()));
+            }
+
+            return Ok(APIResponse.CreateOKWithData(vehicles));
+        }
+
         // =========================
         // GET BY ID
         // =========================
 
+
+        /*
         [HttpGet("{id}")]
         public async Task<ActionResult<APIResponse>> GetById(int id)
         {
@@ -94,14 +80,37 @@ namespace CarsShop.Controllers
                 APIResponse.CreateOKWithData<GetVehicleResponse>(vehicle)
             );
         }
+        */
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<APIResponse>> GetById(int id)
+        {
+            var serviceVehicle = await _vehicleService.GetByIdAsync(id);
+
+            if (serviceVehicle == null)
+            {
+                return NotFound(
+                    APIResponse.CreateBadWithMessage(
+                        $"Vehicle with id {id} not found"));
+            }
+
+            var vehicle = new GetVehicleResponse
+            {
+                // Map properties here
+            };
+
+            return Ok(APIResponse.CreateOKWithData(vehicle));
+        }
 
         // =========================
         // CREATE
         // =========================
+
+        /*
         [HttpPost]
         public async Task<ActionResult<APIResult>> Create([FromBody] VehicleItemCreateDto dto)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || dto == null)
             {
                 var error = APIResponse.CreateBadWithMessage("Invalid vehicle data");
                 return BadRequest(error);
@@ -115,13 +124,55 @@ namespace CarsShop.Controllers
                 APIResponse.CreateOKWithData(created)
             );
         }
+        */
+
+        // =========================
+        [HttpPost]
+        public async Task<ActionResult<APIResult>> Create(
+            [FromBody] VehicleItemCreateDto dto)
+        {
+            if (!ModelState.IsValid || dto == null)
+            {
+                var error = APIResponse.CreateBadWithMessage("Invalid vehicle data");
+                return BadRequest(error);
+            }
+
+            var serviceDto =
+                new CarsShop.Services.DTOs.Requests.Vehicle.Item.VehicleItemCreateDto
+                {
+                    Color = dto.Color,
+                    Model = dto.Model,
+                    Date = dto.Date,
+                    Details = dto.Details,
+                    Image = dto.Image,
+                    Price = dto.Price,
+                    VehicleTypeId = dto.VehicleTypeId
+                };
+
+            var created = await _vehicleService.AddAsync(serviceDto);
+
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = created.Id },
+                APIResponse.CreateOKWithData(created)
+            );
+        }
 
         // =========================
         // UPDATE
         // =========================
+
+        /*
         [HttpPut("{id}")]
         public async Task<ActionResult<APIResult>> Update(int id, [FromBody] VehicleItemUpdateDto request)
         {
+
+            if(request == null)
+            {
+                var error = APIResponse.CreateBadWithMessage<string>("Vehicle with id {id} not found");
+                return NotFound(error);
+
+            }
             var updated = await _vehicleService.UpdateAsync(id, request);
 
             if (updated == null)
@@ -132,6 +183,32 @@ namespace CarsShop.Controllers
             var response = APIResponse.CreateOKWithData<int>(id);
 
             return Ok(response);
+        }
+        */
+        [HttpPut("{id}")]
+        public async Task<ActionResult<APIResponse>> Update(
+            int id,
+            [FromBody] VehicleItemUpdateDto dto)
+        {
+            if (!ModelState.IsValid || dto == null)
+            {
+                return BadRequest(
+                    APIResponse.CreateBadWithMessage("Invalid vehicle data"));
+            }
+
+            var serviceDto = new ServiceVehicleItemUpdateDto
+            {
+                Color = dto.Color,
+                Model = dto.Model,
+                Date = dto.Date,
+                Details = dto.Details,
+                Image = dto.Image,
+                Price = dto.Price
+            };
+
+            var updated = await _vehicleService.UpdateAsync(id, serviceDto);
+
+            return Ok(APIResponse.CreateOKWithData(updated));
         }
 
         // =========================

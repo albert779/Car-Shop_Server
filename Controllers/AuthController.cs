@@ -1,10 +1,11 @@
 ﻿using CarsShop.Dto.RequestsDto.Login;
 using CarsShop.Dto.Responses.API;
-using CarsShop.Dto.Responses.Auth;
-using CarsShop.Interfeces.Services;
 using CarsShop.Services.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+//using CarsShop.Services.Interfaces;
+using CarsShop.Dto.RequestsDto.Login;
+using CarsShop.Services.Mappers;
 
 namespace IDGCoreWebAPI.Controllers
 {
@@ -22,9 +23,9 @@ namespace IDGCoreWebAPI.Controllers
             _authService = authService;
         }
 
-
+        /*
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterDto request)
+        public async Task<IActionResult> Register([FromBody] RegisterUiDto request)
         {
             if (request == null)
                 return BadRequest("Invalid data");
@@ -37,11 +38,41 @@ namespace IDGCoreWebAPI.Controllers
             //return Ok("User registered successfully");
             return Ok(APIResponse.CreateOKWithData("User registered successfully"));
         }
+        */
+        // REGISTER
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(
+            [FromBody] RegisterUiDto request)
+        {
+            if (request == null)
+                return BadRequest("Invalid data");
 
+            var blRequest = new RegisterBlDto
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Email = request.Email,
+                Password = request.Password,
+                BirthDate = request.BirthDate,
+                Phone = request.Phone,
+                RoleId = request.RoleId
+            };
+
+
+            //var result = await _authService.RegisterAsync(blRequest);
+
+
+            var result = await _authService.RegisterAsync(blRequest);
+
+            if (!result)
+                return BadRequest("Email already exists");
+
+            return Ok(APIResponse.CreateOKWithData("User registered successfully"));
+        }
 
 
         [HttpPost("login")]
-        public async Task<ActionResult<APIResponse>> Login([FromBody] LoginDto request)
+        public async Task<ActionResult<APIResponse>> Login([FromBody] LoginUiDto request)
         {
             APIResponse response = null;
 
@@ -51,7 +82,15 @@ namespace IDGCoreWebAPI.Controllers
                 return BadRequest(response);
             }
 
-            var authResponse = await _authService.LoginAsync(request);
+            //var authResponse = await _authService.LoginAsync(request);
+
+            var blRequest = new LoginBlDto
+            {
+                Email = request.Email,
+                Password = request.Password
+            };
+
+            var authResponse = await _authService.LoginAsync(blRequest);
             if (authResponse.Success == false)
             {
                 response = APIResponse.CreateBadWithMessage<string>(authResponse.Message);

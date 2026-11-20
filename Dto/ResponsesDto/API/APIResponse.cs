@@ -1,9 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace CarsShop.Dto.Responses.API
+﻿namespace CarsShop.Dto.Responses.API
 {
     public class APIResponse : APIResult
     {

@@ -1,8 +1,6 @@
-﻿using CarsShop.Dto.RequestsDto.Vehicle.Item;
-using CarsShop.Interfeces.Db;
+﻿using CarsShop.Dto.RequestsDto.RequestFilterDto;
+using CarsShop.Dto.Responses.API;
 using CarsShop.Interfeces.Services;
-using CarsShop.Services.Auth;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarsShop.Controllers
@@ -14,8 +12,7 @@ namespace CarsShop.Controllers
     {
         private readonly IVehicleRequestService _service;
 
-        public VehicleRequestController(
-            IVehicleRequestService service
+        public VehicleRequestController(IVehicleRequestService service
         )
         {
             _service = service;
@@ -24,23 +21,28 @@ namespace CarsShop.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] VehicleRequestCreateDto dto)
         {
+
             var userId = GetUserId();
-            await _service.AddNew(dto, userId);
+            var item = VehicleRequestCreateDto.ConvertServiceDto(dto);
+            await _service.AddNew(item, userId);
 
             return Ok();
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetRequests(
-    [FromQuery] RequestFilterDto filter)
+        public async Task<ActionResult<APIResponse>> GetRequests([FromQuery] RequestFilterDto filter)
         {
             var userId = GetUserId();
+            if(filter == null)
+            {
+                var responose = APIResponse.CreateBadWithMessage("Filters cannot be null");
+                return responose;
+            }
 
-            var result = await _service.GetRequestsAsync(
-                userId,
-                filter);
-
-            return Ok(result);
+            var item = RequestFilterDto.ConvertToServiceDto(filter);
+            var result = await _service.GetRequestsAsync(userId, item);
+            var response = APIResponse.CreateOKWithData(result);
+            return response;
         }
     }
 }
