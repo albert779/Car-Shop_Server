@@ -1,14 +1,13 @@
 ﻿using CarsShop.Configurations.Extensions;
 using CarsShop.Database;
+using CarsShop.Interfeces.Services;
 using CarsShop.Middlewares;
 using CarsShop.Services.Configuration;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using CarsShop.Services.Implementations;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Json;
-using System.Text;
 
 
 // ================= Serilog =================
@@ -61,6 +60,10 @@ builder.Services.AddOptions<JWTInfo>()
 // ================= Build App =================
 
 builder.Services.AddServices(builder.Configuration);
+
+// Register My Requests service
+builder.Services.AddScoped<IMyRequestsService, MyRequestsService>();
+
 var app = builder.Build();
 
 

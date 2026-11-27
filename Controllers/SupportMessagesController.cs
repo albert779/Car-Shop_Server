@@ -5,14 +5,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-//using CarsShop.Services.Interfaces;
+
 
 namespace CarsShop.Controllers
 {
     [ApiController]
     [Route("api/support-messages")]
-    [Authorize]
-    public class SupportMessagesController : ControllerBase
+    public class SupportMessagesController : AuthorizedController
     {
         private readonly AppDbContext _db;
 
@@ -130,7 +129,7 @@ namespace CarsShop.Controllers
                 receiverId = managerId.Value;
             }
 
-            var message = new Message
+            var message = new Database.Models.Message
             {
                 RequestId = request.Id,
                 CreatedByUserId = currentUserId.Value,

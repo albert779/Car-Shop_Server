@@ -5,9 +5,9 @@
 
 
 
-    public static CarsShop.Dto.Responses.Requests.VehicleRequestCreateDto ConvertServiceDto(VehicleRequestCreateDto request)
+    public static CarsShop.Dto.Responses.Requests.VehicleRequestCreate ConvertServiceDto(VehicleRequestCreateDto request)
     {
-        var item = new CarsShop.Dto.Responses.Requests.VehicleRequestCreateDto()
+        var item = new CarsShop.Dto.Responses.Requests.VehicleRequestCreate()
         {
             CarId = request.CarId,
             Message = request.Message,

@@ -3,21 +3,16 @@
     public class RequestFilterDto
     {
         public string? Search { get; set; }
-
         public int? StatusId { get; set; }
-
         public DateTime? FromDate { get; set; }
-
         public DateTime? ToDate { get; set; }
-
         public int Page { get; set; } = 1;
-
         public int PageSize { get; set; } = 5;
 
-
-        public static CarsShop.Dto.Responses.Requests.RequestFilterDto ConvertToServiceDto(RequestFilterDto input)
+        public static CarsShop.Models.Requests.RequestFilter ConvertToServiceDto(
+            RequestFilterDto input)
         {
-            var item = new CarsShop.Dto.Responses.Requests.RequestFilterDto()
+            var item = new CarsShop.Models.Requests.RequestFilter()
             {
                 FromDate = input.FromDate,
                 ToDate = input.ToDate,
@@ -26,8 +21,8 @@
                 Search = input.Search,
                 StatusId = input.StatusId,
             };
+
             return item;
         }
-
     }
 }

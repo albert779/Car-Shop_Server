@@ -1,11 +1,10 @@
-﻿using TableOfRequestsDto =
-    CarsShop.Dto.RequestsDto.TableOfRequests.TableOfRequests;
+﻿using CarsShop.Models.Responses;
 
 namespace CarsShop.Dto.RequestsDto
 {
     public class MyRequestsPageDto
     {
-        public List<TableOfRequestsDto> Items { get; set; } = new();
+        public List<TableOfRequests> Items { get; set; } = new();
 
         public int Page { get; set; }
 

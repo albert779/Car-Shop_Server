@@ -3,9 +3,9 @@ using CarsShop.Dto.Responses.API;
 using CarsShop.Services.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-//using CarsShop.Services.Interfaces;
 using CarsShop.Dto.RequestsDto.Login;
 using CarsShop.Services.Mappers;
+using CarsShop.Models.Requests;
 
 namespace IDGCoreWebAPI.Controllers
 {
@@ -47,7 +47,7 @@ namespace IDGCoreWebAPI.Controllers
             if (request == null)
                 return BadRequest("Invalid data");
 
-            var blRequest = new RegisterBlDto
+            var blRequest = new RegisterBl
             {
                 FirstName = request.FirstName,
                 LastName = request.LastName,
@@ -76,21 +76,17 @@ namespace IDGCoreWebAPI.Controllers
         {
             APIResponse response = null;
 
-            if (request == null)
-            {
-                response = APIResponse.CreateBadWithMessage<string>("Invalid data");
-                return BadRequest(response);
-            }
+            //if (request == null)
+            //{
+            //    response = APIResponse.CreateBadWithMessage<string>("Invalid data");
+            //    return BadRequest(response);
+            //}   
 
             //var authResponse = await _authService.LoginAsync(request);
 
-            var blRequest = new LoginBlDto
-            {
-                Email = request.Email,
-                Password = request.Password
-            };
-
-            var authResponse = await _authService.LoginAsync(blRequest);
+            var sertviceModel = LoginUiDto.ConvertToServiceLogin(request);
+            var authResponse = await _authService.LoginAsync(sertviceModel);
+            
             if (authResponse.Success == false)
             {
                 response = APIResponse.CreateBadWithMessage<string>(authResponse.Message);
@@ -98,7 +94,7 @@ namespace IDGCoreWebAPI.Controllers
             }
 
             return APIResponse.CreateOKWithData(authResponse);
-           
+
         }
     }
 }

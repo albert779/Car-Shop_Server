@@ -1,4 +1,5 @@
-﻿namespace CarsShop.Dto.RequestsDto.TableOfRequests
+﻿
+namespace CarsShop.Models.Responses
 {
     public class TableOfRequests
     {
